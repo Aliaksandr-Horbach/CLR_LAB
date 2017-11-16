@@ -1,23 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 
 namespace TracerImplementation
 {
-    [XmlInclude(typeof(WritedInformation))]
+   
     public class WritedInformation
      {
-        public List<TraceResult> list { get; }
-         public double fulltime { get; }
+         
+         public double Fulltime { get; }
+         public List<TraceResult> ListOfResult { get; }
 
 
-        public WritedInformation(List<TraceResult> list, double fulltime)
+        public WritedInformation( double fulltime, List<TraceResult> listOfResult)
         {
-            this.fulltime = fulltime;
-            this.list = list;
+            this.Fulltime = fulltime;
+            this.ListOfResult = listOfResult;
         }
+         public WritedInformation()
+         {
+
+         }
 
 
-     }
+    }
 }

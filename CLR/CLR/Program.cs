@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Reflection.Emit;
+using System.Xml.Serialization;
 using TracerImplementation;
 using WriteMethods;
 
@@ -18,9 +20,7 @@ namespace CLR
 
     class Program
     {
-
-        
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
 
           
@@ -30,12 +30,13 @@ namespace CLR
             TestMethods testMethods=new TestMethods();
             testMethods.Test1();
             testMethods.Test2();
+            testMethods.Test3();
 
             stopwatch.Stop();
 
             var obResult = TracerImplementation.Tracer.GetInstance().GetTraceList();
 
-            var infa=new WritedInformation(obResult, stopwatch.ElapsedMilliseconds);
+            var infa=new WritedInformation( stopwatch.ElapsedMilliseconds, obResult);
 
             
             while (true)
@@ -51,13 +52,15 @@ namespace CLR
                         Console.WriteLine("Choose format of result \n"+"1-console(json view) \n2-xml \n3-json \n4-yaml");
                         string expansion = Console.ReadLine();
                         Extansions expansionvalue;
-                        var tt = Extansions.TryParse(expansion, out expansionvalue);
+                        var parse = Extansions.TryParse(expansion, out expansionvalue);
                         switch (expansion)
                         {
                                 case "1":
                                     { 
                                         string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
                                         Console.WriteLine(json);
+                                        var serializer = new XmlSerializer(typeof(WritedInformation));
+                                        serializer.Serialize(Console.Out, infa);
                                         break;
                                     }
                             case "2":
@@ -75,9 +78,8 @@ namespace CLR
                                     }
                             case "4":
                                     {
-
                                         var d = new WriteToFile();
-                                        d.YamlWriting(expansionvalue.ToString(), infa);
+                                        d.YamlWriting(expansionvalue.ToString(),infa);
                                         break;
                                      }
                                    

@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Yaml.Serialization;
+using YamlDotNet.Serialization;
 using Newtonsoft.Json;
 using WriteMethods.Interfaces;
 
@@ -25,6 +26,7 @@ namespace WriteMethods
 
         }
 
+        [XmlInclude(type: typeof(object[]))]
         public void XmlWriting(string extansion,object obj)
         {
             Console.WriteLine("Select path including name of file:");
@@ -33,8 +35,8 @@ namespace WriteMethods
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(object));
-                    serializer.Serialize(file, obj);
+                    var serializer = new Serializer();
+                    serializer.Serialize(Console.Out, obj);
 
                 }
             }
@@ -48,8 +50,12 @@ namespace WriteMethods
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-                    var serializer = new YamlSerializer();
-                    serializer.Serialize(file, obj);
+                    //YamlSerializer serializer = new YamlSerializer();
+                    //serializer.Serialize(Console.Out, obj);
+
+                    //serialization using the library Yaml.Serialization 
+                    var seriazer = new Serializer();
+                    seriazer.Serialize(Console.Out, obj);
                 }
             }
         }

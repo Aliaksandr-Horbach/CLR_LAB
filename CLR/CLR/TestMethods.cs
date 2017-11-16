@@ -2,7 +2,7 @@
 
 namespace CLR
 {
-    class TestMethods
+    internal class TestMethods
     {
         //private Tracer tracer=new Tracer();
         public Tracer Tracer { get; set; }
@@ -12,11 +12,9 @@ namespace CLR
          {
             Tracer.GetInstance().StartTrace();
 
-
             for (int i = 0; i < 10000000; i++)
-            {
-                 
-            }
+             {
+             }
 
              Tracer.GetInstance().StopTrace();
              Tracer.GetInstance().GetTraceResult();
@@ -27,10 +25,20 @@ namespace CLR
         {
             Tracer.GetInstance().StartTrace();
 
-
             for (int i = 0; i < 10000000; i++)
             {
+            }
 
+            Tracer.GetInstance().StopTrace();
+            Tracer.GetInstance().GetTraceResult();
+
+        }
+        public void Test3()
+        {
+            Tracer.GetInstance().StartTrace();
+            Test2();
+            for (int i = 0; i < 10000000; i++)
+            {
             }
 
             Tracer.GetInstance().StopTrace();

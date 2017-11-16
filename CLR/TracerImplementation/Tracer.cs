@@ -5,37 +5,33 @@ using TracerImplementation.Interfaces;
 namespace TracerImplementation
 {
     public sealed class Tracer :ITracer
-    {    
-        List<TraceResult> AllInformation=new List<TraceResult>();
-        private static Tracer instance = null;
-        Stopwatch stopwatch = new Stopwatch();
+    {
+        private readonly List<TraceResult> _allInformation=new List<TraceResult>();
+        private static Tracer _instance = null;
+        private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private Tracer(){}
 
         public static Tracer GetInstance()
         {
-            if (instance == null)
-            {
-                instance=new Tracer();
-            }
-            return instance;
+            return _instance ?? (_instance = new Tracer());
         }
 
 
 
         public TraceResult GetTraceResult()
         {
-            StackTrace stackTrace = new StackTrace(true);
-            StackFrame stackFrame = stackTrace.GetFrame(1);
+            var stackTrace = new StackTrace(true);
+            var stackFrame = stackTrace.GetFrame(1);
 
-            TraceResult traceResult=new TraceResult();
+            var traceResult=new TraceResult();
             var declaringType = stackFrame.GetMethod().DeclaringType;
             if (declaringType != null)
-                traceResult.ClassName = declaringType.Name;
+            traceResult.ClassName = declaringType.Name;
             traceResult.MethodName = stackFrame.GetMethod().Name;
             traceResult.QuantityOfParam = stackFrame.GetMethod().GetParameters().Length;
-            traceResult.Time = stopwatch.ElapsedMilliseconds;
-            AllInformation.Add(traceResult);
+            traceResult.Time = _stopwatch.ElapsedMilliseconds;
+            _allInformation.Add(traceResult);
 
             return traceResult;
 
@@ -45,12 +41,12 @@ namespace TracerImplementation
 
         public void StartTrace()
         {
-            stopwatch.Start();
+            _stopwatch.Start();
         }
 
         public void StopTrace()
         {
-            stopwatch.Stop();
+            _stopwatch.Stop();
            
         }
 
@@ -58,7 +54,7 @@ namespace TracerImplementation
 
         public List<TraceResult> GetTraceList()
         {
-            return AllInformation;
+            return _allInformation;
         }
     }
 }
