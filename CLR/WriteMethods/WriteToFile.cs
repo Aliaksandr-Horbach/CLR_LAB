@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 using System.Yaml.Serialization;
 using Newtonsoft.Json;
@@ -8,31 +10,47 @@ namespace WriteMethods
 {
     public class WriteToFile : IWiteToFile
     {
-        public void JSonWriting(string path, object obj)
+        public void JsonWriting(string extansion,object obj)
         {
-            using (StreamWriter file = File.CreateText(path))
+            Console.WriteLine("Select path including name of file:");
+            string path = Console.ReadLine();
+            if (path!=null)
+            {
+                using (StreamWriter file = File.CreateText(path +"."+extansion))
                 {
-                   JsonSerializer serializer = new JsonSerializer();
-
-                   serializer.Serialize(file, obj);
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(file, obj);
                 }
+            }
+
         }
 
-        public void XmlWriting(string path, object obj)
+        public void XmlWriting(string extansion,object obj)
         {
-            using (StreamWriter file = File.CreateText(path))
+            Console.WriteLine("Select path including name of file:");
+            string path = Console.ReadLine();
+            if (path != null)
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(object));
-                serializer.Serialize(file, obj);
+                using (StreamWriter file = File.CreateText(path + "." + extansion))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(object));
+                    serializer.Serialize(file, obj);
+
+                }
             }
         }
 
-        public void YamlWriting(string path, object obj)
+        public void YamlWriting(string extansion,object obj)
         {
-            using (StreamWriter file = File.CreateText(path))
+            Console.WriteLine("Select path including name of file:");
+            string path = Console.ReadLine();
+            if (path != null)
             {
-                var serializer = new YamlSerializer();
-                serializer.Serialize(file, obj);
+                using (StreamWriter file = File.CreateText(path + "." + extansion))
+                {
+                    var serializer = new YamlSerializer();
+                    serializer.Serialize(file, obj);
+                }
             }
         }
     }

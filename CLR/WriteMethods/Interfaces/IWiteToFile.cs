@@ -3,8 +3,8 @@
     interface IWiteToFile
     {   
         //Writing methods
-        void JSonWriting(string path,object obj);
-        void YamlWriting(string path,object obj);
-        void XmlWriting(string path,object obj);
+        void JsonWriting(string extansion,object obj);
+        void YamlWriting(string extansion,object obj);
+        void XmlWriting(string extansion,object obj);
     }
 }

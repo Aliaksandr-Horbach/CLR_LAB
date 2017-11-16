@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Reflection.Emit;
 using TracerImplementation;
 using WriteMethods;
 
@@ -8,10 +9,16 @@ using WriteMethods;
 
 namespace CLR
 {
+    enum Extansions
+    {
+        xml=2,
+        json,
+        yaml
+    }
 
     class Program
     {
-        
+
         
         static void Main(string[] args)
         {
@@ -30,7 +37,7 @@ namespace CLR
 
             var infa=new WritedInformation(obResult, stopwatch.ElapsedMilliseconds);
 
-
+            
             while (true)
             {
                 Console.WriteLine("Input command:");
@@ -41,26 +48,40 @@ namespace CLR
                 {
                     case "--f":
                     {
-                        Console.WriteLine("Choose format of result \n1-console(json view) \n2-xml \n3-json \n4-yaml");
+                        Console.WriteLine("Choose format of result \n"+"1-console(json view) \n2-xml \n3-json \n4-yaml");
                         string expansion = Console.ReadLine();
-                        if (expansion.Equals("1"))
+                        Extansions expansionvalue;
+                        var tt = Extansions.TryParse(expansion, out expansionvalue);
+                        switch (expansion)
                         {
-                                
-                            string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
-                                    Console.WriteLine(json);
-                            }
-                        else
-                        {
-                                Console.WriteLine("Now select path including name of file:");
-                                string path = Console.ReadLine();
+                                case "1":
+                                    { 
+                                        string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
+                                        Console.WriteLine(json);
+                                        break;
+                                    }
+                            case "2":
+                                    {
+                                        var d = new WriteToFile();
+                                        d.XmlWriting(expansionvalue.ToString(), infa);
+                                        break;
+                                    }
 
-                                if (path != null)
-                                {
-                                    //open file stream
-                                    var d = new WriteToFile();
-                                    d.YamlWriting(path, obResult);
-                                }
-                        }
+                            case "3":
+                                    {
+                                        var d = new WriteToFile();
+                                        d.JsonWriting(expansionvalue.ToString(), infa);
+                                        break;
+                                    }
+                            case "4":
+                                    {
+
+                                        var d = new WriteToFile();
+                                        d.YamlWriting(expansionvalue.ToString(), infa);
+                                        break;
+                                     }
+                                   
+                            }
 
                         break;
 
