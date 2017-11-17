@@ -2,7 +2,9 @@
 using System;
 using System.Diagnostics;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Reflection.Emit;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 using TracerImplementation;
 using WriteMethods;
@@ -11,14 +13,14 @@ using WriteMethods;
 
 namespace CLR
 {
-    enum Extansions
+    internal enum Extansions
     {
         xml=2,
         json,
         yaml
     }
 
-    class Program
+    internal class Program
     {
         private static void Main(string[] args)
         {
@@ -33,10 +35,10 @@ namespace CLR
             testMethods.Test3();
 
             stopwatch.Stop();
+            var testsTime = stopwatch.ElapsedMilliseconds;
+            var testResults = Tracer.GetInstance().GetTraceList();
 
-            var obResult = TracerImplementation.Tracer.GetInstance().GetTraceList();
-
-            var infa=new WritedInformation( stopwatch.ElapsedMilliseconds, obResult);
+            var infa=new WritedInformation(testsTime, testResults);
 
             
             while (true)
@@ -51,16 +53,13 @@ namespace CLR
                     {
                         Console.WriteLine("Choose format of result \n"+"1-console(json view) \n2-xml \n3-json \n4-yaml");
                         string expansion = Console.ReadLine();
-                        Extansions expansionvalue;
-                        var parse = Extansions.TryParse(expansion, out expansionvalue);
+                        var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
                         switch (expansion)
                         {
                                 case "1":
                                     { 
                                         string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
                                         Console.WriteLine(json);
-                                        var serializer = new XmlSerializer(typeof(WritedInformation));
-                                        serializer.Serialize(Console.Out, infa);
                                         break;
                                     }
                             case "2":
@@ -81,7 +80,8 @@ namespace CLR
                                         var d = new WriteToFile();
                                         d.YamlWriting(expansionvalue.ToString(),infa);
                                         break;
-                                     }
+                                    }
+                            default: Console.WriteLine("Invalid file extension entered."); break;
                                    
                             }
 
@@ -97,15 +97,21 @@ namespace CLR
                     case "--h":
                     {
                         Console.WriteLine(
-                            "Help:\n --f -Selection of output format\n --o -Selection of output path");
+                            "Help:\n --f     -Selection of output format\n --o     -Selection of output path \n --clear -Clear console");
                         break;
                     }
-                    case "--w":
+                    case "--clear":
                     {
-                        Console.WriteLine("Succesly writed to file");
+                        Console.Clear();
                         break;
                     }
-                     default: Console.WriteLine("Wrong command."); break;
+                    case "--exit":
+                    {
+                         
+                        Environment.Exit(0);
+                        break;
+                    }
+                    default: Console.WriteLine("Wrong command."); break;
 
                 }
             }

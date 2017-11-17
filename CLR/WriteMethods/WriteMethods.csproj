@@ -81,5 +81,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TracerImplementation\TracerImplementation.csproj">
+      <Project>{e9c5aaea-3474-41dc-981d-3af160f160d2}</Project>
+      <Name>TracerImplementation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
