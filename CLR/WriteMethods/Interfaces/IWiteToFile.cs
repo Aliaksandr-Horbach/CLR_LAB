@@ -2,11 +2,11 @@
 
 namespace WriteMethods.Interfaces
 {
-    interface IWiteToFile
+    internal interface IWiteToFile
     {   
         //Writing methods
         void JsonWriting(string extansion,object obj);
         void YamlWriting(string extansion,object obj);
-        void XmlWriting(string extansion,Object obj);
+        void XmlWriting(string extansion,object obj);
     }
 }

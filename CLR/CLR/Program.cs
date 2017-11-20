@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.Net.Mail;
-using System.Net.Mime;
-using System.Reflection.Emit;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Serialization;
 using TracerImplementation;
 using WriteMethods;
 
@@ -97,7 +92,10 @@ namespace CLR
                     case "--h":
                     {
                         Console.WriteLine(
-                            "Help:\n --f     -Selection of output format\n --o     -Selection of output path \n --clear -Clear console");
+                            "Help:\n--f  -Selection of output format\n" +
+                            "--o  -Selection of output path" +
+                            " \n--cl -Clear console\n" +
+                            "--ex -Exit from console");
                         break;
                     }
                     case "--clear":
