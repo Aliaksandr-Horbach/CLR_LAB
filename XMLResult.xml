@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WritedInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FullTime>151</FullTime>
+  <ListOfResult>
+    <Test>
+      <MethodName>Test1</MethodName>
+      <ClassName>TestMethods</ClassName>
+      <QuantityOfParam>0</QuantityOfParam>
+      <Time>28</Time>
+    </Test>
+    <Test>
+      <MethodName>Test2</MethodName>
+      <ClassName>TestMethods</ClassName>
+      <QuantityOfParam>0</QuantityOfParam>
+      <Time>57</Time>
+    </Test>
+    <Test>
+      <MethodName>Test2</MethodName>
+      <ClassName>TestMethods</ClassName>
+      <QuantityOfParam>0</QuantityOfParam>
+      <Time>85</Time>
+    </Test>
+    <Test>
+      <MethodName>Test3</MethodName>
+      <ClassName>TestMethods</ClassName>
+      <QuantityOfParam>0</QuantityOfParam>
+      <Time>85</Time>
+    </Test>
+  </ListOfResult>
+</WritedInformation>

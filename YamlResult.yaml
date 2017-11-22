@@ -1,0 +1,14 @@
+Fulltime: 151
+ListOfResult:
+- MethodName: Test1
+  ClassName: TestMethods
+  Time: 28
+- MethodName: Test2
+  ClassName: TestMethods
+  Time: 57
+- MethodName: Test2
+  ClassName: TestMethods
+  Time: 85
+- MethodName: Test3
+  ClassName: TestMethods
+  Time: 85
