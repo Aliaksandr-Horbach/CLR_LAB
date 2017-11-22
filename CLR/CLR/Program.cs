@@ -42,7 +42,7 @@ namespace CLR
             var infa=new WritedInformation(testsTime, testResults);
 
 
-            string expansion="";
+            string extansion="";
             string path = "";
 
             while (true)
@@ -55,7 +55,7 @@ namespace CLR
                     case "--f":
                     {
                         Console.WriteLine("Choose format of result \n"+"1-console(json view) \n2-xml \n3-json \n4-yaml");
-                        expansion = Console.ReadLine();
+                        extansion = Console.ReadLine();
                        
 
 
@@ -70,8 +70,8 @@ namespace CLR
                     }
                     case "--w":
                         {
-                            var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
-                            switch (expansion)
+                            var parse = Enum.TryParse(extansion, out Extansions expansionvalue);
+                            switch (extansion)
                             {
                                 case "1":
                                     {
@@ -88,39 +88,57 @@ namespace CLR
 
                                 case "3":
                                     {
-                                        string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                                        foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
+                                        try
                                         {
-                                            Assembly newAssembly = Assembly.LoadFile(pluginPath);
-                                            foreach (var type in newAssembly.GetExportedTypes())
+                                            string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
+                                            foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
                                             {
-                                                if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                                Assembly newAssembly = Assembly.LoadFile(pluginPath);
+                                                foreach (var type in newAssembly.GetExportedTypes())
                                                 {
-                                                    var ctor = type.GetConstructor(new Type[] { });
-                                                    if (ctor.Invoke(new object[] { }) is IPlugins plugin) plugin.JsonWriting(expansionvalue.ToString(), infa,path);
+                                                    if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                                    {
+                                                        var ctor = type.GetConstructor(new Type[] { });
+                                                        if (ctor.Invoke(new object[] { }) is IPlugins plugin) plugin.JsonWriting(expansionvalue.ToString(), infa, path);
+                                                    }
                                                 }
                                             }
                                         }
+                                        catch (Exception e)
+                                        {
+                                            Console.WriteLine(e);
+                                            throw;
+                                        }
+                                        
 
                                         break;
                                     }
                                 case "4":
                                     {
-                                        string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                                        foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
+                                        try
                                         {
-                                            Assembly newAssembly = Assembly.LoadFile(pluginPath);
-                                            foreach (var type in newAssembly.GetExportedTypes())
+                                            string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
+                                            foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
                                             {
-                                                if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                                Assembly newAssembly = Assembly.LoadFile(pluginPath);
+                                                foreach (var type in newAssembly.GetExportedTypes())
                                                 {
-                                                    var ctor = type.GetConstructor(new Type[] { });
-                                                    var plugin = ctor.Invoke(new object[] { }) as IPlugins;
-                                                    if (plugin != null)
-                                                        plugin.YamlWriting(expansionvalue.ToString(), infa,path);
+                                                    if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                                    {
+                                                        var ctor = type.GetConstructor(new Type[] { });
+                                                        var plugin = ctor.Invoke(new object[] { }) as IPlugins;
+                                                        if (plugin != null)
+                                                            plugin.YamlWriting(expansionvalue.ToString(), infa, path);
+                                                    }
                                                 }
                                             }
                                         }
+                                        catch (Exception e)
+                                        {
+                                            Console.WriteLine(e);
+                                            throw;
+                                        }
+                                        
                                         break;
                                     }
                                 default: Console.WriteLine("Invalid file extension entered."); break;
@@ -141,7 +159,7 @@ namespace CLR
                     }
                     case "--status":
                     {
-                        var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
+                        var parse = Enum.TryParse(extansion, out Extansions expansionvalue);
                         Console.WriteLine("Current extension of file: {0}\nCurrent path path for writing:{1} ",expansionvalue, path);
                         break;
                     }
