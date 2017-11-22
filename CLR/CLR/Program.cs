@@ -20,7 +20,7 @@ namespace CLR
 
     internal class Program
     {
-
+   
 
 
         private static void Main(string[] args)
@@ -42,12 +42,12 @@ namespace CLR
             var infa=new WritedInformation(testsTime, testResults);
 
 
-
+            string expansion="";
+            string path = "";
 
             while (true)
             {
                 Console.WriteLine("Input command:");
-                string[] commandStrings = { "--f", "--o", "--h" };
                 string command = Console.ReadLine();
 
                 switch (command)
@@ -55,43 +55,56 @@ namespace CLR
                     case "--f":
                     {
                         Console.WriteLine("Choose format of result \n"+"1-console(json view) \n2-xml \n3-json \n4-yaml");
-                        string expansion = Console.ReadLine();
-                        var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
-                        switch (expansion)
+                        expansion = Console.ReadLine();
+                       
+
+
+                        break;
+
+                    }
+                    case "--o":
+                    {
+                        Console.WriteLine("Choose path to file (including name):");
+                        path = Console.ReadLine();
+                        break;
+                    }
+                    case "--w":
                         {
+                            var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
+                            switch (expansion)
+                            {
                                 case "1":
-                                    { 
+                                    {
                                         string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
                                         Console.WriteLine(json);
                                         break;
                                     }
-                            case "2":
+                                case "2":
                                     {
                                         var d = new WriteToFile();
-                                        d.XmlWriting(expansionvalue.ToString(), infa);
+                                        d.XmlWriting(expansionvalue.ToString(), infa,path);
                                         break;
                                     }
 
-                            case "3":
-                            {
-                                string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                                foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
-                                {
-                                    Assembly newAssembly = Assembly.LoadFile(pluginPath);
-                                    foreach (var type in newAssembly.GetExportedTypes())
+                                case "3":
                                     {
-                                        if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                        string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
+                                        foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
                                         {
-                                            var ctor = type.GetConstructor(new Type[] { });
-                                            var plugin = ctor.Invoke(new object[] { }) as IPlugins;
-                                            plugin.JsonWriting(expansionvalue.ToString(), infa);
+                                            Assembly newAssembly = Assembly.LoadFile(pluginPath);
+                                            foreach (var type in newAssembly.GetExportedTypes())
+                                            {
+                                                if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
+                                                {
+                                                    var ctor = type.GetConstructor(new Type[] { });
+                                                    if (ctor.Invoke(new object[] { }) is IPlugins plugin) plugin.JsonWriting(expansionvalue.ToString(), infa,path);
+                                                }
+                                            }
                                         }
-                                    }
-                                }
 
                                         break;
                                     }
-                            case "4":
+                                case "4":
                                     {
                                         string pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
                                         foreach (string pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll", SearchOption.TopDirectoryOnly))
@@ -103,35 +116,36 @@ namespace CLR
                                                 {
                                                     var ctor = type.GetConstructor(new Type[] { });
                                                     var plugin = ctor.Invoke(new object[] { }) as IPlugins;
-                                                    plugin.YamlWriting(expansionvalue.ToString(), infa);
+                                                    if (plugin != null)
+                                                        plugin.YamlWriting(expansionvalue.ToString(), infa,path);
                                                 }
                                             }
                                         }
                                         break;
                                     }
-                            default: Console.WriteLine("Invalid file extension entered."); break;
-                                   
+                                default: Console.WriteLine("Invalid file extension entered."); break;
+
                             }
-
-                        break;
-
-                    }
-                    case "--o":
-                    {
-                        Console.WriteLine("Choose path to file (including name):");
-                        string path = Console.ReadLine();
-                        break;
+                            break;
                     }
                     case "--h":
                     {
                         Console.WriteLine(
-                            "Help:\n--f  -Selection of output format\n" +
-                            "--o  -Selection of output path" +
-                            " \n--cl -Clear console\n" +
-                            "--ex -Exit from console");
+                            "Help:\n--f      -Selection of output format\n" +
+                            "--o      -Selection of output path\n" +
+                            "--wr     -Write information to a file\n" +
+                            "--status -Current settings of path to file and extension" +
+                            "\n--clean  -Clear console\n" +
+                            "--exit   -Exit from console");
                         break;
                     }
-                    case "--clear":
+                    case "--status":
+                    {
+                        var parse = Enum.TryParse(expansion, out Extansions expansionvalue);
+                        Console.WriteLine("Current extension of file: {0}\nCurrent path path for writing:{1} ",expansionvalue, path);
+                        break;
+                    }
+                    case "--clean":
                     {
                         Console.Clear();
                         break;

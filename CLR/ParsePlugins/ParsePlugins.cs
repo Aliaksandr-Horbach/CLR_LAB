@@ -9,10 +9,9 @@ namespace ParsePlugins
     public class ParsePlugins:IPlugins
     {
         
-        public void JsonWriting(string extansion, object obj)
+        public void JsonWriting(string extansion, object obj, string path)
         {
-            Console.WriteLine("Select path including name of file:");
-            string path = Console.ReadLine();
+
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
@@ -25,10 +24,9 @@ namespace ParsePlugins
             }
         }
 
-        public void YamlWriting(string extansion, object obj)
+        public void YamlWriting(string extansion, object obj,string path)
         {
-            Console.WriteLine("Select path including name of file:");
-            string path = Console.ReadLine();
+
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))

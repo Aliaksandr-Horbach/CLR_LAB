@@ -11,12 +11,9 @@ namespace WriteMethods
         
 
         [XmlInclude(typeof(WritedInformation))]
-        public void XmlWriting(string extansion,object obj)
+        public void XmlWriting(string extansion,object obj,string path)
         {
 
-            
-            Console.WriteLine("Select path including name of file:");
-            string path = Console.ReadLine();
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
