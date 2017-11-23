@@ -8,14 +8,18 @@ namespace ParsePlugins
 {
     public class ParsePlugins:IPlugins
     {
-        
+        public string PluginName { get; }
+
         public void JsonWriting(string extansion, object obj, string path)
         {
+            Console.WriteLine("Successful writing to a file!");
 
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
+
+
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Serialize(file, obj);
                     Console.WriteLine("Successful writing to a file!");
@@ -26,12 +30,11 @@ namespace ParsePlugins
 
         public void YamlWriting(string extansion, object obj,string path)
         {
-
+            
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-
                     var seriazer = new Serializer();
                     seriazer.Serialize(file, obj);
                     Console.WriteLine("Successful writing to a file!");
