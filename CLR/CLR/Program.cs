@@ -67,14 +67,13 @@ namespace CLR
                                     if (type.IsClass && (type.GetInterface(typeof(IPlugins).FullName) != null))
                                     {
                                         var parser = Activator.CreateInstance(type) as IPlugins;
-
-                                        parser.JsonWriting(extansion, infa, path);
-                                        }
+                                        parser.JsonOutPut(infa);
+                                    }
                                     
                                 }
-                                    //string json = JsonConvert.SerializeObject(infa, Formatting.Indented);
-                                    //Console.WriteLine(json);
-                                }
+                                    
+                                   
+                            }
 
                         }
                         break;

@@ -28,6 +28,13 @@ namespace ParsePlugins
             }
         }
 
+        public void JsonOutPut(object obj)
+        {
+            string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            Console.WriteLine("json");
+
+        }
+
         public void YamlWriting(string extansion, object obj,string path)
         {
             
