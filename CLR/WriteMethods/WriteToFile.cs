@@ -18,7 +18,7 @@ namespace WriteMethods
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-                    var serializer = new XmlSerializer(typeof(WritedInformation), new Type[] { typeof(WritedInformation) });
+                    var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
                     serializer.Serialize(file, obj);
                     Console.WriteLine("Successful writing to a file!");
 

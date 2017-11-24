@@ -4,7 +4,7 @@ namespace CLR
 {
     internal class TestMethods
     {
-        //private Tracer tracer=new Tracer();
+        
         public Tracer Tracer { get; set; }
         
         

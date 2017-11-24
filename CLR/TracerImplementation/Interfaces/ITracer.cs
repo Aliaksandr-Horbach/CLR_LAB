@@ -1,6 +1,6 @@
 ﻿namespace TracerImplementation.Interfaces
 {
-    interface ITracer
+    internal interface ITracer
     {
         // method is called at the beginning of the method to be measured
         void StartTrace();

@@ -1,7 +1,7 @@
 ﻿
 namespace AppLicationPlugins
 {
-    abstract class Plugins:IPlugins
+    internal abstract class Plugins:IPlugins
     {
         
         public abstract void JsonWriting(string extansion, object obj, string path);

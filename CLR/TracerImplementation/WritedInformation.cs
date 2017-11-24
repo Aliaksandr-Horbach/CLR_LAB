@@ -12,16 +12,16 @@ namespace TracerImplementation
     {
         [XmlElement("FullTime")]
         [DefaultValue(0)]
-        public double Fulltime { get; set; }
+        public double FullTestsTime { get; set; }
         [XmlArray("ListOfResult")]
         [XmlArrayItem("Test")]
         public List<TraceResult> ListOfResult { get; }
 
 
-        public WritedInformation( double fulltime, List<TraceResult> listOfResult)
+        public WritedInformation( double fullTestsTimeime, List<TraceResult> listOfResult)
         {
-            this.Fulltime = fulltime;
-            this.ListOfResult = listOfResult;
+            FullTestsTime = fullTestsTimeime;
+            ListOfResult = listOfResult;
         }
 
         public WritedInformation()

@@ -12,18 +12,14 @@ namespace ParsePlugins
 
         public void JsonWriting(string extansion, object obj, string path)
         {
-            Console.WriteLine("Successful writing to a file!");
 
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-
-
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Serialize(file, obj);
                     Console.WriteLine("Successful writing to a file!");
-
                 }
             }
         }
@@ -32,7 +28,7 @@ namespace ParsePlugins
         {
 
             string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-            Console.WriteLine("json");
+            Console.WriteLine(json);
 
         }
 

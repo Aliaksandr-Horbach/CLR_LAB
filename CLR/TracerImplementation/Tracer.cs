@@ -6,7 +6,7 @@ namespace TracerImplementation
 {
     public sealed class Tracer :ITracer
     {
-        private readonly List<TraceResult> _allInformation=new List<TraceResult>();
+        private readonly List<TraceResult> _testsResults=new List<TraceResult>();
         private static Tracer _instance = null;
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
@@ -29,9 +29,9 @@ namespace TracerImplementation
             if (declaringType != null)
             traceResult.ClassName = declaringType.Name;
             traceResult.MethodName = stackFrame.GetMethod().Name;
-            traceResult.QuantityOfParam = stackFrame.GetMethod().GetParameters().Length;
-            traceResult.Time = _stopwatch.ElapsedMilliseconds;
-            _allInformation.Add(traceResult);
+            traceResult.NumberOfParam = stackFrame.GetMethod().GetParameters().Length;
+            traceResult.TestTime = _stopwatch.ElapsedMilliseconds;
+            _testsResults.Add(traceResult);
 
             return traceResult;
 
@@ -54,7 +54,7 @@ namespace TracerImplementation
 
         public List<TraceResult> GetTraceList()
         {
-            return _allInformation;
+            return _testsResults;
         }
     }
 }
