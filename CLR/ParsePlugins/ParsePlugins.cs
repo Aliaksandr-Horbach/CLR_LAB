@@ -8,7 +8,7 @@ namespace ParsePlugins
 {
     public class ParsePlugins:IPlugins
     {
-        public string PluginName { get; }
+
 
         public void JsonWriting(string extansion, object obj, string path)
         {
@@ -30,6 +30,7 @@ namespace ParsePlugins
 
         public void JsonOutPut(object obj)
         {
+
             string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
             Console.WriteLine("json");
 
