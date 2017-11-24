@@ -71,7 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IWiteToFile.cs" />
+    <Compile Include="Interfaces\IWriteToFile.cs" />
     <Compile Include="WriteToFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace ParsePlugins
     {
 
 
-        public void JsonWriting(string extansion, object obj, string path)
+        public void JsonWrite(string extansion, object obj, string path)
         {
 
             if (path != null)
@@ -24,7 +24,7 @@ namespace ParsePlugins
             }
         }
 
-        public void JsonOutPut(object obj)
+        public void JsonOutput(object obj)
         {
 
             string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
@@ -32,7 +32,7 @@ namespace ParsePlugins
 
         }
 
-        public void YamlWriting(string extansion, object obj,string path)
+        public void YamlWrite(string extansion, object obj,string path)
         {
             
             if (path != null)

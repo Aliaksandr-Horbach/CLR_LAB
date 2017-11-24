@@ -4,8 +4,8 @@ namespace AppLicationPlugins
     public interface IPlugins
     {
        
-        void JsonOutPut(object obj);
-        void JsonWriting(string extansion, object obj,string path);
-        void YamlWriting(string extansion, object obj, string path);
+        void JsonOutput(object obj);
+        void JsonWrite(string extansion, object obj,string path);
+        void YamlWrite(string extansion, object obj, string path);
     }
 }

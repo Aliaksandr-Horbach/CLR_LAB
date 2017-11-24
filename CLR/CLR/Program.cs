@@ -35,7 +35,7 @@ namespace CLR
             var testsInformation = new WritedInformation(testsTime, testResults);
 
 
-            var extansion = "";
+           string extansion = "";
             var path = "";
 
             while (true)
@@ -64,7 +64,7 @@ namespace CLR
                                     if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
                                     {
                                         var parser = Activator.CreateInstance(type) as IPlugins;
-                                        parser.JsonOutPut(testsInformation);
+                                        parser.JsonOutput(testsInformation);
                                     }
                             }
                         }
@@ -78,13 +78,13 @@ namespace CLR
                     }
                     case "--w":
                     {
-                        var parse = Enum.TryParse(extansion, out Extansions expansionvalue);
+                        Enum.TryParse(extansion, out Extansions expansionvalue);
                         switch (extansion)
                         {
                             case "2":
                             {
                                 var d = new WriteToFile();
-                                d.XmlWriting(expansionvalue.ToString(), testsInformation, path);
+                                d.XmlWrite(expansionvalue.ToString(), testsInformation, path);
                                 break;
                             }
 
@@ -107,7 +107,7 @@ namespace CLR
                                             {
                                                 var ctor = type.GetConstructor(new Type[] { });
                                                 if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                    plugin.JsonWriting(expansionvalue.ToString(), testsInformation, path);
+                                                    plugin.JsonWrite(expansionvalue.ToString(), testsInformation, path);
                                             }
                                     }
                                 }
@@ -137,7 +137,7 @@ namespace CLR
                                         {
                                             var ctor = type.GetConstructor(new Type[] { });
                                             if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                plugin.YamlWriting(expansionvalue.ToString(), testsInformation, path);
+                                                plugin.YamlWrite(expansionvalue.ToString(), testsInformation, path);
                                         }
                                 }
                                 break;

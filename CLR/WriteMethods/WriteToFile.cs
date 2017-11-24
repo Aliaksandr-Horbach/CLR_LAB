@@ -6,12 +6,12 @@ using WriteMethods.Interfaces;
 
 namespace WriteMethods
 {
-    public class WriteToFile:IWiteToFile
+    public class WriteToFile:IWriteToFile
     {
         
 
         [XmlInclude(typeof(WritedInformation))]
-        public void XmlWriting(string extansion,object obj,string path)
+        public void XmlWrite(string extansion,object obj,string path)
         {
 
             if (path != null)

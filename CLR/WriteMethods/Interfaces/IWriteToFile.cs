@@ -1,10 +1,10 @@
 ﻿
 namespace WriteMethods.Interfaces
 {
-    internal interface IWiteToFile
+    internal interface IWriteToFile
     {   
         //Writing methods
-        void XmlWriting(string extansion,object obj,string path);
+        void XmlWrite(string extansion,object obj,string path);
         
     }
 }

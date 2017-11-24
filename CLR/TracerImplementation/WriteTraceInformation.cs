@@ -15,13 +15,13 @@ namespace TracerImplementation
         public double FullTestsTime { get; set; }
         [XmlArray("ListOfResult")]
         [XmlArrayItem("Test")]
-        public List<TraceResult> ListOfResult { get; }
+        public List<TraceResult> TraceResults { get; }  
 
 
-        public WritedInformation( double fullTestsTimeime, List<TraceResult> listOfResult)
+        public WritedInformation( double fullTestsTimeime, List<TraceResult> traceResults)
         {
             FullTestsTime = fullTestsTimeime;
-            ListOfResult = listOfResult;
+            TraceResults = traceResults;
         }
 
         public WritedInformation()
