@@ -1,32 +1,22 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using System.Xml.Serialization;
-using AppLicationPlugins;
-using CLR.Interfaces;
 using TracerImplementation;
 using WriteMethods;
 
 namespace CLR
 {
-    internal enum Extansions
-    {
-        Xml = 2,
-        Json,
-        Yaml
-
-    }
 
     internal class Program
     {
         
         private static void Main(string[] args)
         {
+            TraceResultFormatter tracefoFormatter = new TraceResultFormatter();
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            TraceResultFormatter tr= new TraceResultFormatter();
-            tr.GetFormat();
+
             var testMethods = new TestMethods();
             testMethods.Test1();
             testMethods.Test2();
@@ -51,17 +41,14 @@ namespace CLR
                 {
                     case "--f":
                     {
-                        Console.WriteLine("Choose format of result \n" +
-                                          "1-console(json view) \n2-xml \n3-json \n4-yaml");
-
+                        Console.WriteLine("Choose format of result \n" +"console(xml view) \nxml");
+                                          tracefoFormatter.GetFormat();
                         extansion = Console.ReadLine();
-                        if (extansion.Equals("1"))
+                            if( extansion.Equals("console"))
                         {
-                            
                             var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
                             serializer.Serialize(Console.Out, testsInformation);
-
-                        }
+                            }
                         break;
                     }
                     case "--o":
@@ -72,39 +59,28 @@ namespace CLR
                     }
                     case "--w":
                     {
-                        Enum.TryParse(extansion, out Extansions expansionvalue);
+                       
                         switch (extansion)
                         {
-                            case "2":
+                            case "console":
+                            {
+                                var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
+                                serializer.Serialize(Console.Out, testsInformation);
+                                        break;
+                            }
+                            case "xml":
                             {
                                 var d = new WriteToFile();
-                                d.XmlWrite(expansionvalue.ToString(), testsInformation, path);
+                                d.XmlWrite(extansion, testsInformation, path);
                                 break;
                             }
 
-                            case "3":
+                            case "Json":
                             {
                                 try
                                 {
-                                    var pluginsFolder =
-                                        Path.Combine(
-                                            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
-                                            throw new InvalidOperationException(), "Plugins");
-                                    foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "JsonSerializer*.dll",
-                                        SearchOption.TopDirectoryOnly))
-                                    {
-                                        var newAssembly = Assembly.LoadFrom(pluginPath);
-
-
-                                        foreach (var type in newAssembly.GetExportedTypes())
-                                            if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
-                                            {
-                                                var ctor = type.GetConstructor(new Type[] { });
-                                                if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                    plugin.SerializeInformation(expansionvalue.ToString(), testsInformation, path);
-                                            }
-                                    }
-                                }
+                                    tracefoFormatter.GetJsonFormat(extansion, testsInformation, path);
+                                        }
 
 
                                 catch (Exception e)
@@ -116,25 +92,21 @@ namespace CLR
 
                                 break;
                             }
-                            case "4":
+                            case "Yaml":
                             {
-                                var pluginsFolder =
-                                    Path.Combine(
-                                        Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
-                                        throw new InvalidOperationException(), "Plugins");
-                                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "YamlSerializer*.dll",
-                                    SearchOption.TopDirectoryOnly))
+                                try
                                 {
-                                    var newAssembly = Assembly.LoadFrom(pluginPath);
-                                    foreach (var type in newAssembly.GetExportedTypes())
-                                        if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
-                                        {
-                                            var ctor = type.GetConstructor(new Type[] { });
-                                            if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                plugin.SerializeInformation(expansionvalue.ToString(), testsInformation, path);
-                                        }
+                                       tracefoFormatter.GetYamlFormat(extansion,testsInformation,path);     
                                 }
-                                break;
+
+
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e);
+                                    throw;
+                                }
+
+                                        break;
                             }
                             default:
                                 Console.WriteLine("Invalid file extension entered.");
@@ -144,8 +116,10 @@ namespace CLR
                     }
                     case "--h":
                     {
+                            Console.WriteLine("Avalible Extensions:\nConsole\nXml");
+                            tracefoFormatter.GetFormat();
                         Console.WriteLine(
-                            "Help:\n--f      -Selection of output format\n" +
+                            "\nHelp:\n--f      -Selection of output format\n" +
                             "--o      -Selection of output path\n" +
                             "--wr     -Write information to a file\n" +
                             "--status -Current settings of path to file and extension" +
@@ -155,9 +129,9 @@ namespace CLR
                     }
                     case "--status":
                     {
-                        Enum.TryParse(extansion, out Extansions expansionvalue);
+                        
                         Console.WriteLine("Current extension of file: {0}\nCurrent path path for writing:{1} ",
-                            expansionvalue, path);
+                            extansion, path);
                         break;
                     }
                     case "--clean":

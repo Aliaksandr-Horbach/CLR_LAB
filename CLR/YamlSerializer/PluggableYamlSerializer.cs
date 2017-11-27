@@ -5,7 +5,7 @@ using YamlDotNet.Serialization;
 
 namespace YamlSerializer
 {
-    class YamlSerializer:IPlugins
+    public class PluggableYamlSerializer: IPlugins
     {
         public void SerializeInformation(string extansion, object obj, string path)
         {
@@ -14,6 +14,7 @@ namespace YamlSerializer
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
                     var seriazer = new Serializer();
+                    
                     seriazer.Serialize(file, obj);
                     Console.WriteLine("Successful writing to a file!");
                 }

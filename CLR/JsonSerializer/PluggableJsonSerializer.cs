@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using AppLicationPlugins;
-using Newtonsoft.Json;
+
 
 namespace JsonSerializer
 {
-    public class JsonSerializer:IPlugins
+    public class PluggableJsonSerializer:IPlugins
     {
         public void SerializeInformation(string extansion, object obj, string path)
         {
