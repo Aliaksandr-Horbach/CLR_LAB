@@ -5,7 +5,7 @@ using YamlDotNet.Serialization;
 
 namespace YamlSerializer
 {
-    public class PluggableYamlSerializer: IPlugins
+    public class YamlSerializer: IPlugins
     {
         public void SerializeInformation(string extansion, object obj, string path)
         {

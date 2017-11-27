@@ -5,7 +5,7 @@ using AppLicationPlugins;
 
 namespace JsonSerializer
 {
-    public class PluggableJsonSerializer:IPlugins
+    public class JsonSerializer:IPlugins
     {
         public void SerializeInformation(string extansion, object obj, string path)
         {

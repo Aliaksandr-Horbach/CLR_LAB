@@ -12,7 +12,7 @@ namespace CLR
         
         private static void Main(string[] args)
         {
-            TraceResultFormatter tracefoFormatter = new TraceResultFormatter();
+            var tracefoFormatter = new TraceResultFormatter();
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -29,7 +29,7 @@ namespace CLR
             var testsInformation = new WritedInformation(testsTime, testResults);
 
 
-           string extansion = "";
+            var extansion = "";
             var path = "";
 
             while (true)
@@ -42,12 +42,12 @@ namespace CLR
                     case "--f":
                     {
                         Console.WriteLine("Choose format of result \n" +"console(xml view) \nxml");
-                                          tracefoFormatter.GetFormat();
+                        tracefoFormatter.GetFormat();
                         extansion = Console.ReadLine();
-                            if( extansion.Equals("console"))
-                        {
-                            var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
-                            serializer.Serialize(Console.Out, testsInformation);
+                            if( extansion != null && extansion.Equals("console"))
+                            {
+                                var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
+                                serializer.Serialize(Console.Out, testsInformation);
                             }
                         break;
                     }
@@ -59,15 +59,9 @@ namespace CLR
                     }
                     case "--w":
                     {
-                       
                         switch (extansion)
                         {
-                            case "console":
-                            {
-                                var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
-                                serializer.Serialize(Console.Out, testsInformation);
-                                        break;
-                            }
+
                             case "xml":
                             {
                                 var d = new WriteToFile();
@@ -75,38 +69,31 @@ namespace CLR
                                 break;
                             }
 
-                            case "Json":
+                            case "json":
                             {
                                 try
                                 {
                                     tracefoFormatter.GetJsonFormat(extansion, testsInformation, path);
-                                        }
-
-
+                                }
                                 catch (Exception e)
                                 {
                                     Console.WriteLine(e);
                                     throw;
                                 }
-
-
                                 break;
                             }
-                            case "Yaml":
+                            case "yaml":
                             {
                                 try
                                 {
-                                       tracefoFormatter.GetYamlFormat(extansion,testsInformation,path);     
+                                    tracefoFormatter.GetYamlFormat(extansion,testsInformation,path); 
                                 }
-
-
                                 catch (Exception e)
                                 {
                                     Console.WriteLine(e);
                                     throw;
                                 }
-
-                                        break;
+                                break;
                             }
                             default:
                                 Console.WriteLine("Invalid file extension entered.");
@@ -118,10 +105,10 @@ namespace CLR
                     {
                             Console.WriteLine("Avalible Extensions:\nConsole\nXml");
                             tracefoFormatter.GetFormat();
-                        Console.WriteLine(
+                            Console.WriteLine(
                             "\nHelp:\n--f      -Selection of output format\n" +
                             "--o      -Selection of output path\n" +
-                            "--wr     -Write information to a file\n" +
+                            "--w      -Write information to a file\n" +
                             "--status -Current settings of path to file and extension" +
                             "\n--clean  -Clear console\n" +
                             "--exit   -Exit from console");
@@ -129,20 +116,18 @@ namespace CLR
                     }
                     case "--status":
                     {
-                        
-                        Console.WriteLine("Current extension of file: {0}\nCurrent path path for writing:{1} ",
-                            extansion, path);
+                        Console.WriteLine("Current extension of file: {0}\nCurrent path path for writing:{1} ",extansion, path);
                         break;
                     }
                     case "--clean":
                     {
-                        Console.Clear();
-                        break;
+                        Console.Clear();   break;
+
                     }
                     case "--exit":
                     {
-                        Environment.Exit(0);
-                        break;
+                        Environment.Exit(0); break;
+
                     }
                     default:
                         Console.WriteLine("Wrong command.");
