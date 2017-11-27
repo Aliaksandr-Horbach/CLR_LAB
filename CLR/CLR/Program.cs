@@ -59,7 +59,7 @@ namespace CLR
                             foreach (var pluinPath in Directory.GetFiles(pluginsFolder, "*.dll",
                                 SearchOption.TopDirectoryOnly))
                             {
-                                var newAssembly = Assembly.LoadFile(pluinPath);
+                                var newAssembly = Assembly.LoadFrom(pluinPath);
                                 foreach (var type in newAssembly.GetTypes())
                                     if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
                                     {
@@ -99,7 +99,7 @@ namespace CLR
                                     foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll",
                                         SearchOption.TopDirectoryOnly))
                                     {
-                                        var newAssembly = Assembly.LoadFile(pluginPath);
+                                        var newAssembly = Assembly.LoadFrom(pluginPath);
 
 
                                         foreach (var type in newAssembly.GetExportedTypes())
@@ -131,7 +131,7 @@ namespace CLR
                                 foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll",
                                     SearchOption.TopDirectoryOnly))
                                 {
-                                    var newAssembly = Assembly.LoadFile(pluginPath);
+                                    var newAssembly = Assembly.LoadFrom(pluginPath);
                                     foreach (var type in newAssembly.GetExportedTypes())
                                         if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
                                         {
