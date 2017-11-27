@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Xml.Serialization;
 using AppLicationPlugins;
+using CLR.Interfaces;
 using TracerImplementation;
 using WriteMethods;
 
@@ -18,11 +20,13 @@ namespace CLR
 
     internal class Program
     {
+        
         private static void Main(string[] args)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-
+            TraceResultFormatter tr= new TraceResultFormatter();
+            tr.GetFormat();
             var testMethods = new TestMethods();
             testMethods.Test1();
             testMethods.Test2();
@@ -49,24 +53,14 @@ namespace CLR
                     {
                         Console.WriteLine("Choose format of result \n" +
                                           "1-console(json view) \n2-xml \n3-json \n4-yaml");
+
                         extansion = Console.ReadLine();
                         if (extansion.Equals("1"))
                         {
-                            var pluginsFolder =
-                                Path.Combine(
-                                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
-                                    throw new InvalidOperationException(), "Plugins");
-                            foreach (var pluinPath in Directory.GetFiles(pluginsFolder, "*.dll",
-                                SearchOption.TopDirectoryOnly))
-                            {
-                                var newAssembly = Assembly.LoadFrom(pluinPath);
-                                foreach (var type in newAssembly.GetTypes())
-                                    if (type.IsClass && type.GetInterface(typeof(IPlugins).FullName) != null)
-                                    {
-                                        var parser = Activator.CreateInstance(type) as IPlugins;
-                                        parser.JsonOutput(testsInformation);
-                                    }
-                            }
+                            
+                            var serializer = new XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
+                            serializer.Serialize(Console.Out, testsInformation);
+
                         }
                         break;
                     }
@@ -96,7 +90,7 @@ namespace CLR
                                         Path.Combine(
                                             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
                                             throw new InvalidOperationException(), "Plugins");
-                                    foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll",
+                                    foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "JsonSerializer*.dll",
                                         SearchOption.TopDirectoryOnly))
                                     {
                                         var newAssembly = Assembly.LoadFrom(pluginPath);
@@ -107,7 +101,7 @@ namespace CLR
                                             {
                                                 var ctor = type.GetConstructor(new Type[] { });
                                                 if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                    plugin.JsonWrite(expansionvalue.ToString(), testsInformation, path);
+                                                    plugin.SerializeInformation(expansionvalue.ToString(), testsInformation, path);
                                             }
                                     }
                                 }
@@ -128,7 +122,7 @@ namespace CLR
                                     Path.Combine(
                                         Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
                                         throw new InvalidOperationException(), "Plugins");
-                                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "ParsePlugins*.dll",
+                                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "YamlSerializer*.dll",
                                     SearchOption.TopDirectoryOnly))
                                 {
                                     var newAssembly = Assembly.LoadFrom(pluginPath);
@@ -137,7 +131,7 @@ namespace CLR
                                         {
                                             var ctor = type.GetConstructor(new Type[] { });
                                             if (ctor.Invoke(new object[] { }) is IPlugins plugin)
-                                                plugin.YamlWrite(expansionvalue.ToString(), testsInformation, path);
+                                                plugin.SerializeInformation(expansionvalue.ToString(), testsInformation, path);
                                         }
                                 }
                                 break;
@@ -182,5 +176,7 @@ namespace CLR
                 }
             }
         }
+
+        
     }
 }

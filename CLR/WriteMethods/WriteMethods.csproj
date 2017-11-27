@@ -79,6 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppLicationPlugins\AppLicationPlugins.csproj">
+      <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
+      <Name>AppLicationPlugins</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TracerImplementation\TracerImplementation.csproj">
       <Project>{e9c5aaea-3474-41dc-981d-3af160f160d2}</Project>
       <Name>TracerImplementation</Name>
