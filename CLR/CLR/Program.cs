@@ -12,7 +12,7 @@ namespace CLR
         
         private static void Main(string[] args)
         {
-            var tracefoFormatter = new TraceResultFormatter();
+            var tracefoFormatter = new TraceResultFormatter.TraceResultFormatter();
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -42,7 +42,7 @@ namespace CLR
                     case "--f":
                     {
                         Console.WriteLine("Choose format of result \n" +"console(xml view) \nxml");
-                        tracefoFormatter.GetFormat();
+                        tracefoFormatter.GetPluginsName();
                         extansion = Console.ReadLine();
                             if( extansion != null && extansion.Equals("console"))
                             {
@@ -104,7 +104,7 @@ namespace CLR
                     case "--h":
                     {
                             Console.WriteLine("Avalible Extensions:\nConsole\nXml");
-                            tracefoFormatter.GetFormat();
+                            tracefoFormatter.GetPluginsName();
                             Console.WriteLine(
                             "\nHelp:\n--f      -Selection of output format\n" +
                             "--o      -Selection of output path\n" +
@@ -126,7 +126,7 @@ namespace CLR
                     }
                     case "--exit":
                     {
-                        Environment.Exit(0); break;
+                            Environment.Exit(0); break;
 
                     }
                     default:

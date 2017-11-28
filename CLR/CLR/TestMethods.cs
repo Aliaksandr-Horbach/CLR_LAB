@@ -1,5 +1,4 @@
-﻿using System;
-using TracerImplementation;
+﻿using TracerImplementation;
 
 namespace CLR
 {

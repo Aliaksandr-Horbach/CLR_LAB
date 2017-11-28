@@ -43,19 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ITraceResultFormatter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMethods.cs" />
-    <Compile Include="TraceResultFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppLicationPlugins\AppLicationPlugins.csproj">
+    <ProjectReference Include="..\AppLicationPlugins\ApplicationPlugins.csproj">
       <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
-      <Name>AppLicationPlugins</Name>
+      <Name>ApplicationPlugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TraceResultFormatter\TraceResultFormatter.csproj">
+      <Project>{9aae88bd-1fb4-44ae-a984-f70ea3eea912}</Project>
+      <Name>TraceResultFormatter</Name>
     </ProjectReference>
     <ProjectReference Include="..\TracerImplementation\TracerImplementation.csproj">
       <Project>{e9c5aaea-3474-41dc-981d-3af160f160d2}</Project>
