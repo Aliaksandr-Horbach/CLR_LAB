@@ -10,8 +10,12 @@ namespace CLR
         public void RunCommand( string command)
         {
             var tracefoFormatter = new TraceResultFormatter.TraceResultFormatter();
+
             var runTests=new RunTests();
             var testResults= runTests.Run();
+
+            var writeInfo=new WriteCommand();
+
             var extansion = "";
             var path = "";
 
@@ -25,9 +29,9 @@ namespace CLR
                         if (extansion != null && extansion.Equals("console"))
                         {
                             var d = new XmlSerializer.XmlSerializer();
-                            var ds=new WriteToFile();
-                            Console.WriteLine(d.SerializeInformation(extansion, testResults));
-                            ds.WriteInformation("xml", d.SerializeInformation(extansion, testResults),"D:\\ADS");
+                            
+                            Console.WriteLine(d.SerializeInformation(testResults));
+                           
                           
                         }
                         break;
@@ -40,46 +44,7 @@ namespace CLR
                     }
                 case "--w":
                     {
-                        switch (extansion)
-                        {
-
-                            case "xml":
-                                {
-                                    var d = new XmlSerializer.XmlSerializer();
-                                    d.SerializeInformation(extansion, testResults);
-                                    break;
-                                }
-
-                            case "json":
-                                {
-                                    try
-                                    {
-                                        tracefoFormatter.GetJsonFormat(extansion, testResults, path);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        Console.WriteLine(e);
-                                        throw;
-                                    }
-                                    break;
-                                }
-                            case "yaml":
-                                {
-                                    try
-                                    {
-                                        tracefoFormatter.GetYamlFormat(extansion, runTests.Run(), path);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        Console.WriteLine(e);
-                                        throw;
-                                    }
-                                    break;
-                                }
-                            default:
-                                Console.WriteLine("Invalid file extension entered.");
-                                break;
-                        }
+                        writeInfo.Write(extansion,testResults,path);
                         break;
                     }
                 case "--h":

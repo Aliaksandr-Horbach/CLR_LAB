@@ -45,9 +45,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunTests.cs" />
+    <Compile Include="Commands\RunTests.cs" />
     <Compile Include="TestMethods.cs" />
-    <Compile Include="Application.cs" />
+    <Compile Include="Commands\Application.cs" />
+    <Compile Include="Commands\WriteCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

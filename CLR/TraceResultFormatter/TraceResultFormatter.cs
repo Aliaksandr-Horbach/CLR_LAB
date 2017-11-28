@@ -34,7 +34,7 @@ namespace TraceResultFormatter
                         {
                             var ctor = type.GetConstructor(new Type[] { });
                             if (ctor.Invoke(new object[] { }) is IFormator plugin)
-                                plugin.SerializeInformation(expansionvalue, testsInformation);
+                                plugin.SerializeInformation(testsInformation);
                         }
                 }
             }
@@ -52,7 +52,7 @@ namespace TraceResultFormatter
                         {
                             var ctor = type.GetConstructor(new Type[] { });
                             if (ctor.Invoke(new object[] { }) is IFormator plugin)
-                                plugin.SerializeInformation(expansionvalue, testsInformation);
+                                plugin.SerializeInformation(testsInformation);
                         }
                 }
             }

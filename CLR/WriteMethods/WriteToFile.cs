@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using TracerImplementation;
 using WriteMethods.Interfaces;
@@ -10,14 +11,17 @@ namespace WriteMethods
         
 
         [XmlInclude(typeof(WritedInformation))]
-        public void WriteInformation(string extansion,string obj,string path)
+        public void XmlWrite(string extansion,object obj,string path)
         {
 
             if (path != null)
             {
                 using (StreamWriter file = File.CreateText(path + "." + extansion))
                 {
-                    file.WriteLine("fasdfaf");
+                    var serializer = new XmlSerializer(typeof(WritedInformation));
+                    serializer.Serialize(file, obj);
+                    Console.WriteLine("Successful writing to a file!");
+
                 }
             }
         }

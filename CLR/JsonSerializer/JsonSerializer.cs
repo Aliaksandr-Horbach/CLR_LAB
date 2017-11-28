@@ -7,7 +7,7 @@ namespace JsonSerializer
 {
     public class JsonSerializer:IFormator
     {
-        public  string SerializeInformation(string extansion, object obj)
+        public  string SerializeInformation(object obj)
         {
 
                 using (StringWriter textWriter = new StringWriter())

@@ -9,7 +9,7 @@ namespace XmlSerializer
     public class XmlSerializer:IFormator
     {
         [XmlInclude(typeof(WritedInformation))]
-        public  string SerializeInformation(string extansion, object obj)
+        public  string SerializeInformation(object obj)
         {
             
                 using (StringWriter textWriter = new StringWriter())
