@@ -43,6 +43,8 @@ namespace TraceResultFormatter
                 }
             }
 
+        
+
             public void GetYamlFormat(string expansionvalue, object testsInformation, string path)
             {
                 var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
