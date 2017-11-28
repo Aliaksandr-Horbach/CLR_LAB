@@ -1,7 +1,10 @@
-﻿namespace TraceResultFormatter.Interfaces
+﻿using System.Collections.Generic;
+using AppLicationPlugins;
+
+namespace TraceResultFormatter.Interfaces
 {
     internal interface ITraceResultFormatter
     {
-        void GetFormatorsTypes();
+        List<IFormator> GetFormatorsTypes();
     }
 }

@@ -9,5 +9,14 @@ namespace TraceResultFormatter
     public class FormatterFactory
     {
         
+
+        public void asd()
+        {
+            TraceResultFormatter traceResult = new TraceResultFormatter();
+
+        }
+
     }
+
+
 }

@@ -10,9 +10,9 @@ namespace TraceResultFormatter
     public class TraceResultFormatter:ITraceResultFormatter
     {
 
-        public void GetFormatorsTypes()
+        public List<IFormator> GetFormatorsTypes()
         {
-            List<IFormator> formatorsTypes=new List<IFormator>();
+            var formatorsTypes=new List<IFormator>();
             var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
             foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.TopDirectoryOnly))
             {
@@ -29,7 +29,7 @@ namespace TraceResultFormatter
                 }
 
             }
-            
+            return formatorsTypes;
         }
 
     }    
