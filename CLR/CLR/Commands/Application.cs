@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Xml.Serialization;
-using TracerImplementation;
-using WriteMethods;
 
-namespace CLR
+namespace CLR.Commands
 {
     public class Application
     {
-        public void RunCommand( string command)
+       
+        public void RunCommand(string command)
         {
             var tracefoFormatter = new TraceResultFormatter.TraceResultFormatter();
 
@@ -24,15 +22,12 @@ namespace CLR
                 case "--f":
                     {
                         Console.WriteLine("Choose format of result \n" + "console(xml view) \nxml");
-                        tracefoFormatter.GetAllTypesName();
+                        tracefoFormatter.GetFormatorsTypes();
                         extansion = Console.ReadLine();
                         if (extansion != null && extansion.Equals("console"))
                         {
                             var d = new XmlSerializer.XmlSerializer();
-                            
                             Console.WriteLine(d.SerializeInformation(testResults));
-                           
-                          
                         }
                         break;
                     }
@@ -50,7 +45,7 @@ namespace CLR
                 case "--h":
                     {
                         Console.WriteLine("Avalible Extensions:\nConsole\nXml");
-                        tracefoFormatter.GetAllTypesName();
+                        tracefoFormatter.GetFormatorsTypes();
                         Console.WriteLine(
                         "\nHelp:\n--f      -Selection of output format\n" +
                         "--o      -Selection of output path\n" +
@@ -68,16 +63,13 @@ namespace CLR
                 case "--clean":
                     {
                         Console.Clear(); break;
-
                     }
                 case "--exit":
                     {
                         Environment.Exit(0); break;
 
                     }
-                default:
-                    Console.WriteLine("Wrong command.");
-                    break;
+                default:  Console.WriteLine("Wrong command.");   break;
             }
         }
     }

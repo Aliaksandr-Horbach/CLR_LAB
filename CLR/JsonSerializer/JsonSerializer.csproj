@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppLicationPlugins\ApplicationFormator.csproj">
+    <ProjectReference Include="..\AppLicationPlugins\ApplicationPlugins.csproj">
       <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
-      <Name>ApplicationFormator</Name>
+      <Name>ApplicationPlugins</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

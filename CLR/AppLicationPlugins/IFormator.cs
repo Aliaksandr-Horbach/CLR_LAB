@@ -1,5 +1,5 @@
 ﻿
-namespace AppLicationFormator
+namespace AppLicationPlugins
 {
     public interface IFormator
     {

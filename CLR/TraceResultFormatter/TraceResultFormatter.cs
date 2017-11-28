@@ -1,60 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using AppLicationFormator;
+using AppLicationPlugins;
+using TraceResultFormatter.Interfaces;
 
 namespace TraceResultFormatter
 {
-    public class TraceResultFormatter
+    public class TraceResultFormatter:ITraceResultFormatter
     {
-       
-            public void GetAllTypesName()
+
+        public void GetFormatorsTypes()
+        {
+            List<IFormator> formatorsTypes=new List<IFormator>();
+            var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
+            foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.TopDirectoryOnly))
             {
-                var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.TopDirectoryOnly))
+                var newAssembly = Assembly.LoadFrom(pluginPath);
+                foreach (var type in newAssembly.GetExportedTypes())
                 {
-                    var newAssembly = Assembly.LoadFrom(pluginPath);
-                    //foreach (var type in newAssembly.GetExportedTypes())
-                    //{
-                    //    Console.WriteLine(type.Name);
-                    //}
-                   
+                    if (type.IsClass && type.GetInterface(typeof(IFormator).FullName) != null)
+                    {
+                        var ctor = type.GetConstructor(new Type[] { });
+                        var plugin = ctor.Invoke(new object[] { }) as IFormator;
+                        formatorsTypes.Add(plugin);
+                        
+                    }
                 }
+
             }
-
-            public void GetJsonFormat(string expansionvalue, object testsInformation, string path)
-            {
-                var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "JsonSerializer*.dll", SearchOption.TopDirectoryOnly))
-                {
-                    var newAssembly = Assembly.LoadFrom(pluginPath);
-
-                    foreach (var type in newAssembly.GetExportedTypes())
-                        if (type.IsClass && type.GetInterface(typeof(IFormator).FullName) != null)
-                        {
-                            var ctor = type.GetConstructor(new Type[] { });
-                            if (ctor.Invoke(new object[] { }) is IFormator plugin)
-                                plugin.SerializeInformation(testsInformation);
-                        }
-                }
-            }
-
-        
-
-            public void GetYamlFormat(string expansionvalue, object testsInformation, string path)
-            {
-                var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
-                foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "YamlSerializer*.dll", SearchOption.TopDirectoryOnly))
-                {
-                    var newAssembly = Assembly.LoadFrom(pluginPath);
-                    foreach (var type in newAssembly.GetExportedTypes())
-                        if (type.IsClass && type.GetInterface(typeof(IFormator).FullName) != null)
-                        {
-                            var ctor = type.GetConstructor(new Type[] { });
-                            if (ctor.Invoke(new object[] { }) is IFormator plugin)
-                                plugin.SerializeInformation(testsInformation);
-                        }
-                }
-            }
+            
         }
+
+    }    
 }

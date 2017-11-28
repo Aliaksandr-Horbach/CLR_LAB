@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerImplementation", "Tra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteMethods", "WriteMethods\WriteMethods.csproj", "{AE187C4E-146D-4FFF-95A5-4803FD9106D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationFormator", "AppLicationPlugins\ApplicationFormator.csproj", "{B2151ACF-7AAF-4E3F-91FC-91A674BEAE28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationPlugins", "AppLicationPlugins\ApplicationPlugins.csproj", "{B2151ACF-7AAF-4E3F-91FC-91A674BEAE28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamlSerializer", "YamlSerializer\YamlSerializer.csproj", "{95154006-D08F-46A9-B0DF-5CB9FA20B852}"
 EndProject

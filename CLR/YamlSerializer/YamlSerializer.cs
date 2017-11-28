@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using AppLicationFormator;
+using AppLicationPlugins;
 using YamlDotNet.Serialization;
 
 namespace YamlSerializer

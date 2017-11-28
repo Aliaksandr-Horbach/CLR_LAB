@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using AppLicationFormator;
+using AppLicationPlugins;
 using TracerImplementation;
 
 namespace XmlSerializer

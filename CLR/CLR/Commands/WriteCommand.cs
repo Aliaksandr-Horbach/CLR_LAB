@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CLR
 {
@@ -10,7 +7,7 @@ namespace CLR
     {
         public void Write(string extansion, object testResults,string path)
         {
-            var tracefoFormatter = new TraceResultFormatter.TraceResultFormatter();
+           
             switch (extansion)
             {
 
@@ -25,7 +22,7 @@ namespace CLR
                 {
                     try
                     {
-                        tracefoFormatter.GetJsonFormat(extansion, testResults, path);
+                       
                     }
                     catch (Exception e)
                     {
@@ -38,7 +35,7 @@ namespace CLR
                 {
                     try
                     {
-                        tracefoFormatter.GetYamlFormat(extansion, testResults, path);
+                        
                     }
                     catch (Exception e)
                     {
