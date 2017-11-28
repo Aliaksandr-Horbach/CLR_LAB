@@ -7,5 +7,5 @@
         public int NumberOfParam { get; set; }
         public double TestTime { get; set; }
 
-    }
+     }
 }

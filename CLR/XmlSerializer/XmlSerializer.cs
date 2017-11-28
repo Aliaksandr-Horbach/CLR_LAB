@@ -1,26 +1,24 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using AppLicationPlugins;
+using AppLicationFormator;
 using TracerImplementation;
 
 namespace XmlSerializer
 {
-    public class XmlSerializer:Plugins
+    public class XmlSerializer:IFormator
     {
         [XmlInclude(typeof(WritedInformation))]
-        public override void SerializeInformation(string extansion, object obj, string path)
+        public  string SerializeInformation(string extansion, object obj)
         {
-            if (path != null)
-            {
-                using (StreamWriter file = File.CreateText(path + "." + extansion))
+            
+                using (StringWriter textWriter = new StringWriter())
                 {
                     var serializer = new System.Xml.Serialization.XmlSerializer(typeof(WritedInformation));
-                    serializer.Serialize(file, obj);
-                    Console.WriteLine("Successful writing to a file!");
-
+                    serializer.Serialize(textWriter, obj);
+                    return textWriter.ToString();
                 }
-            }
+            
         }
     }
 }

@@ -1,23 +1,22 @@
 ﻿using System;
 using System.IO;
-using AppLicationPlugins;
+using AppLicationFormator;
 using YamlDotNet.Serialization;
 
 namespace YamlSerializer
 {
-    public class YamlSerializer:Plugins
+    public class YamlSerializer:IFormator
     {
-        public override void SerializeInformation(string extansion, object obj, string path)
+        public  string SerializeInformation(string extansion, object obj)
         {
-            if (path != null)
-            {
-                using (StreamWriter file = File.CreateText(path + "." + extansion))
+           
+                using (StringWriter textWriter = new StringWriter())
                 {
                     var seriazer = new Serializer();
-                    seriazer.Serialize(file, obj);
-                    Console.WriteLine("Successful writing to a file!");
+                    seriazer.Serialize(textWriter, obj);
+                    return textWriter.ToString();
                 }
-            }
+            
         }
     }
 }

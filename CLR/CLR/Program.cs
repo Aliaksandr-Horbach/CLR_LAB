@@ -8,7 +8,7 @@ namespace CLR
 
         private static void Main(string[] args)
         {
-            var usersCommands = new UsersCommands();
+            var usersCommands = new Application();
 
             while (true)
             {

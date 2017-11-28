@@ -25,9 +25,9 @@ namespace TracerImplementation
         }
 
         public WritedInformation()
-         {
+        {
 
-         }
+        }
 
 
     }

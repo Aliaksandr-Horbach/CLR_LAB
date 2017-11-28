@@ -44,9 +44,9 @@
     <Compile Include="XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppLicationPlugins\ApplicationPlugins.csproj">
+    <ProjectReference Include="..\AppLicationPlugins\ApplicationFormator.csproj">
       <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
-      <Name>ApplicationPlugins</Name>
+      <Name>ApplicationFormator</Name>
     </ProjectReference>
     <ProjectReference Include="..\TracerImplementation\TracerImplementation.csproj">
       <Project>{e9c5aaea-3474-41dc-981d-3af160f160d2}</Project>

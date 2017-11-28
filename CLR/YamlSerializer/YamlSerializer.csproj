@@ -47,9 +47,9 @@
     <Compile Include="YamlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppLicationPlugins\ApplicationPlugins.csproj">
+    <ProjectReference Include="..\AppLicationPlugins\ApplicationFormator.csproj">
       <Project>{B2151ACF-7AAF-4E3F-91FC-91A674BEAE28}</Project>
-      <Name>ApplicationPlugins</Name>
+      <Name>ApplicationFormator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

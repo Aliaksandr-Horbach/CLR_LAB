@@ -5,7 +5,7 @@ using WriteMethods;
 
 namespace CLR
 {
-    public class UsersCommands
+    public class Application
     {
         public void RunCommand( string command)
         {
@@ -20,12 +20,15 @@ namespace CLR
                 case "--f":
                     {
                         Console.WriteLine("Choose format of result \n" + "console(xml view) \nxml");
-                        tracefoFormatter.GetPluginsName();
+                        tracefoFormatter.GetAllTypesName();
                         extansion = Console.ReadLine();
                         if (extansion != null && extansion.Equals("console"))
                         {
-                            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(WritedInformation), new[] { typeof(WritedInformation) });
-                            serializer.Serialize(Console.Out, testResults);
+                            var d = new XmlSerializer.XmlSerializer();
+                            var ds=new WriteToFile();
+                            Console.WriteLine(d.SerializeInformation(extansion, testResults));
+                            ds.WriteInformation("xml", d.SerializeInformation(extansion, testResults),"D:\\ADS");
+                          
                         }
                         break;
                     }
@@ -42,8 +45,8 @@ namespace CLR
 
                             case "xml":
                                 {
-                                    var d = new WriteToFile();
-                                    d.XmlWrite(extansion, testResults, path);
+                                    var d = new XmlSerializer.XmlSerializer();
+                                    d.SerializeInformation(extansion, testResults);
                                     break;
                                 }
 
@@ -82,7 +85,7 @@ namespace CLR
                 case "--h":
                     {
                         Console.WriteLine("Avalible Extensions:\nConsole\nXml");
-                        tracefoFormatter.GetPluginsName();
+                        tracefoFormatter.GetAllTypesName();
                         Console.WriteLine(
                         "\nHelp:\n--f      -Selection of output format\n" +
                         "--o      -Selection of output path\n" +

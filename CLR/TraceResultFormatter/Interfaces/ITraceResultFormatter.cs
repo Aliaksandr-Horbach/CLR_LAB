@@ -1,4 +1,4 @@
-﻿namespace CLR.Interfaces
+﻿namespace TraceResultFormatter.Interfaces
 {
     internal interface ITraceResultFormatter
     {
