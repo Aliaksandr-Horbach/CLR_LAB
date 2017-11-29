@@ -1,8 +1,7 @@
 ﻿using System;
 using TraceResultFormatter;
 
-
-namespace CLR
+namespace CLR.Commands
 {
     public class WriteCommand
     {
@@ -24,7 +23,7 @@ namespace CLR
                     try
                     {
                         var formaterFactory = new FormatterFactory();
-                            formaterFactory.GetFormaterInstance(testResults);
+                            formaterFactory.GetFormaterInstance(testResults,extansion);
 
                     }
                     catch (Exception e)

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TraceResultFormatter
 {
@@ -11,22 +8,29 @@ namespace TraceResultFormatter
     {
         
 
-        public void GetFormaterInstance(object obj)
+        public void GetFormaterInstance(object obj, string extenson)
         {
             var traceResult = new TraceResultFormatter();
             var types= traceResult.GetFormatorsTypes();
-            types[1].SerializeInformation(obj);
+            foreach (var type in types)
+            {
+                if (type.ToString().ToUpper().Contains(extenson.ToUpper()))
+                type.SerializeInformation(obj);
+            }
+            
 
         }
 
-        public List<string> GetFormatorsNames()
+        public List<string> GetFormatorsNames(string extension)
         {
             var traceResult =new TraceResultFormatter();
             var names = traceResult.GetFormatorsTypes();
             var nameList=new List<string>();
             foreach (var name in names)
             {
-                nameList.Add(name.ToString());
+                if(name.ToString().ToUpper().Contains(extension.ToUpper()))
+                    nameList.Add(extension);
+                
             }
             return nameList;
         }

@@ -23,14 +23,15 @@ namespace CLR.Commands
                 case "--f":
                     {
 
-                        Console.WriteLine("Choose format of result \n" + "console(xml view) \nxml");
-                      var formattersFactory=new FormatterFactory();
-                        var names=formattersFactory.GetFormatorsNames();
+                        Console.WriteLine("Choose format of result: \n" + "Console\nXml");
+                        var formattersFactory=new FormatterFactory();
+                        var names=formattersFactory.GetFormatorsNames("json");
                         foreach (var name in names)
                         {
                             Console.WriteLine(name);
                         }
                         extansion = Console.ReadLine();
+
                         if (extansion != null && extansion.Equals("console"))
                         {
                             var d = new XmlSerializer.XmlSerializer();
