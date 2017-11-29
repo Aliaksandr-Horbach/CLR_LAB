@@ -22,10 +22,14 @@ namespace CLR.Commands
             {
                 case "--f":
                     {
-                        FormatterFactory AS = new FormatterFactory();
-                        AS.asd();
+
                         Console.WriteLine("Choose format of result \n" + "console(xml view) \nxml");
-                        tracefoFormatter.GetFormatorsTypes();
+                      var formattersFactory=new FormatterFactory();
+                        var names=formattersFactory.GetFormatorsNames();
+                        foreach (var name in names)
+                        {
+                            Console.WriteLine(name);
+                        }
                         extansion = Console.ReadLine();
                         if (extansion != null && extansion.Equals("console"))
                         {

@@ -23,7 +23,9 @@ namespace CLR
                 {
                     try
                     {
-                       
+                        var formaterFactory = new FormatterFactory();
+                            formaterFactory.GetFormaterInstance(testResults);
+
                     }
                     catch (Exception e)
                     {
