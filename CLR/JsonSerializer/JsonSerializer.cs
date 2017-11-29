@@ -7,6 +7,13 @@ namespace JsonSerializer
 {
     public class JsonSerializer:IFormator
     {
+        public string Name
+        {
+            get { return "json"; }
+           
+        }
+
+
         public  string SerializeInformation(object obj)
         {
 

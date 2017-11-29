@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using TraceResultFormatter;
 
 namespace CLR.Commands
@@ -9,7 +8,6 @@ namespace CLR.Commands
        
         public void RunCommand(string command)
         {
-            var tracefoFormatter = new TraceResultFormatter.TraceResultFormatter();
 
             var runTests=new RunTests();
             var testResults= runTests.Run();

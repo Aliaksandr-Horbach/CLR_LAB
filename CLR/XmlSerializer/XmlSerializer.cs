@@ -8,6 +8,11 @@ namespace XmlSerializer
 {
     public class XmlSerializer:IFormator
     {
+        public string Name
+        {
+            get { return "xml"; }
+
+        }
         [XmlInclude(typeof(WritedInformation))]
         public  string SerializeInformation(object obj)
         {

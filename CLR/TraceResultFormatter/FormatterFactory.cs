@@ -35,7 +35,7 @@ namespace TraceResultFormatter
             foreach (var name in names)
             {
                 
-                nameList.Add(name.ToString());
+                nameList.Add(name.Name);
             }
             return nameList;
         }
