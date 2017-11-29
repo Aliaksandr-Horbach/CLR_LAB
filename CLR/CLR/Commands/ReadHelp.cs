@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CLR.Commands
 {
@@ -13,7 +9,7 @@ namespace CLR.Commands
         {
             try
             {
-                using (StreamReader streamReader=new StreamReader("Help.txt"))
+                using (var streamReader=new StreamReader("Help.txt"))
                 {
                     String line = streamReader.ReadToEnd();
                     Console.WriteLine(line);

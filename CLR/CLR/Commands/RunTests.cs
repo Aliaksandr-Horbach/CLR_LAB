@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using TracerImplementation;
 
-namespace CLR
+namespace CLR.Commands
 {
     public class RunTests
     {

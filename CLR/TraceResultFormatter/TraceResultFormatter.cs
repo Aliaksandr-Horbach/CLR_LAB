@@ -22,9 +22,11 @@ namespace TraceResultFormatter
                     if (type.IsClass && type.GetInterface(typeof(IFormator).FullName) != null)
                     {
                         var ctor = type.GetConstructor(new Type[] { });
-                        var plugin = ctor.Invoke(new object[] { }) as IFormator;
-                        formatorsTypes.Add(plugin);
-                        
+                        if (ctor != null)
+                        {
+                            var plugin = ctor.Invoke(new object[] { }) as IFormator;
+                            formatorsTypes.Add(plugin);
+                        }
                     }
                 }
 

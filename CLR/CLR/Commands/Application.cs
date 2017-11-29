@@ -80,7 +80,7 @@ namespace CLR.Commands
                         Environment.Exit(0); break;
 
                     }
-                default:  Console.WriteLine("Wrong command.");   break;
+                default:  Console.WriteLine("Wrong command. Type --h to get Help");   break;
             }
         }
     }
