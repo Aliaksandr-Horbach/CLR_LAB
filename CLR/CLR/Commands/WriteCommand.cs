@@ -5,9 +5,10 @@ namespace CLR.Commands
 {
     public class WriteCommand
     {
+       
         public void Write(string extansion, object testResults,string path)
         {
-           
+            var writer=new WriteMethods.WriteToFile();
             switch (extansion)
             {
 
@@ -22,8 +23,9 @@ namespace CLR.Commands
                 {
                     try
                     {
-                        var formaterFactory = new FormatterFactory();
-                            formaterFactory.GetFormaterInstance(testResults,extansion);
+                          
+                            var formaterFactory = new FormatterFactory();
+                            //writer.WriteTests(extansion,formaterFactory.GetFormaterInstance(testResults,extansion),path);
 
                     }
                     catch (Exception e)
@@ -51,5 +53,7 @@ namespace CLR.Commands
                     break;
             }
         }
+
+       
     }
 }

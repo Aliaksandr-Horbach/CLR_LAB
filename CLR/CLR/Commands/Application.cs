@@ -24,12 +24,15 @@ namespace CLR.Commands
                     {
 
                         Console.WriteLine("Choose format of result: \n" + "Console\nXml");
+
                         var formattersFactory=new FormatterFactory();
                         var names=formattersFactory.GetFormatorsNames("json");
+
                         foreach (var name in names)
                         {
                             Console.WriteLine(name);
                         }
+
                         extansion = Console.ReadLine();
 
                         if (extansion != null && extansion.Equals("console"))
@@ -37,17 +40,20 @@ namespace CLR.Commands
                             var d = new XmlSerializer.XmlSerializer();
                             Console.WriteLine(d.SerializeInformation(testResults));
                         }
+                        Console.WriteLine("Choose path to file (including name):");
+                        path = Console.ReadLine();
+                        writeInfo.Write(extansion,testResults,path);
+
                         break;
                     }
                 case "--o":
                     {
-                        Console.WriteLine("Choose path to file (including name):");
-                        path = Console.ReadLine();
+                      
                         break;
                     }
                 case "--w":
                     {
-                        writeInfo.Write(extansion,testResults,path);
+                        
                         break;
                     }
                 case "--h":

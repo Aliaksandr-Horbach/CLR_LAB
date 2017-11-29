@@ -15,10 +15,13 @@ namespace TraceResultFormatter
             foreach (var type in types)
             {
                 if (type.ToString().ToUpper().Contains(extenson.ToUpper()))
-                type.SerializeInformation(obj);
+                {
+                   type.SerializeInformation(obj);
+                }
+                
             }
             
-
+            
         }
 
         public List<string> GetFormatorsNames(string extension)
