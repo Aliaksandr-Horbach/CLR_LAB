@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TraceResultFormatter;
 
 namespace CLR.Commands
@@ -24,9 +25,9 @@ namespace CLR.Commands
                     {
 
                         Console.WriteLine("Choose format of result: \n" + "Console\nXml");
-
+                        
                         var formattersFactory=new FormatterFactory();
-                        var names=formattersFactory.GetFormatorsNames("json");
+                        var names=formattersFactory.GetFormatorsNames();
 
                         foreach (var name in names)
                         {

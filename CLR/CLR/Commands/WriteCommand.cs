@@ -24,7 +24,6 @@ namespace CLR.Commands
                     try
                     {
                         var formaterFactory = new FormatterFactory();
-                        formaterFactory.GetFormaterInstance(testResults, extansion);
                         writer.WriteTests(extansion,formaterFactory.GetFormaterInstance(testResults,extansion).ToString(),path);
 
                     }
@@ -39,7 +38,8 @@ namespace CLR.Commands
                 {
                     try
                     {
-                        
+                        var formaterFactory = new FormatterFactory();
+                        writer.WriteTests(extansion, formaterFactory.GetFormaterInstance(testResults, extansion).ToString(), path);
                     }
                     catch (Exception e)
                     {

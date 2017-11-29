@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -26,16 +27,15 @@ namespace TraceResultFormatter
             return result;
         }
 
-        public List<string> GetFormatorsNames(string extension)
+        public List<string> GetFormatorsNames()
         {
             var traceResult =new TraceResultFormatter();
             var names = traceResult.GetFormatorsTypes();
             var nameList=new List<string>();
             foreach (var name in names)
             {
-                if(name.ToString().ToUpper().Contains(extension.ToUpper()))
-                    nameList.Add(extension);
                 
+                nameList.Add(name.ToString());
             }
             return nameList;
         }
