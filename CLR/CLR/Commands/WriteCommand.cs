@@ -15,7 +15,7 @@ namespace CLR.Commands
                 case "xml":
                 {
                     var d = new XmlSerializer.XmlSerializer();
-                    d.SerializeInformation(testResults);
+                    writer.WriteTests(extansion, d.SerializeInformation(testResults), path);
                     break;
                 }
 

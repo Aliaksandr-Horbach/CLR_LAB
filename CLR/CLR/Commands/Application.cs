@@ -59,15 +59,8 @@ namespace CLR.Commands
                     }
                 case "--h":
                     {
-                        Console.WriteLine("Avalible Extensions:\nConsole\nXml");
-                        tracefoFormatter.GetFormatorsTypes();
-                        Console.WriteLine(
-                        "\nHelp:\n--f      -Selection of output format\n" +
-                        "--o      -Selection of output path\n" +
-                        "--w      -Write information to a file\n" +
-                        "--status -Current settings of path to file and extension" +
-                        "\n--clean  -Clear console\n" +
-                        "--exit   -Exit from console");
+                        var readHelp=new ReadHelp();
+                        readHelp.ReadFile();
                         break;
                     }
                 case "--status":
