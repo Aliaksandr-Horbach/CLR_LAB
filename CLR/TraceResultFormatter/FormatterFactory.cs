@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 
 namespace TraceResultFormatter
@@ -8,20 +9,21 @@ namespace TraceResultFormatter
     {
         
 
-        public void GetFormaterInstance(object obj, string extenson)
+        public StringBuilder GetFormaterInstance(object obj, string extenson)
         {
             var traceResult = new TraceResultFormatter();
             var types= traceResult.GetFormatorsTypes();
+            StringBuilder result= new StringBuilder();
             foreach (var type in types)
             {
                 if (type.ToString().ToUpper().Contains(extenson.ToUpper()))
                 {
-                   type.SerializeInformation(obj);
+                     result.Append(type.SerializeInformation(obj));
                 }
                 
             }
-            
-            
+
+            return result;
         }
 
         public List<string> GetFormatorsNames(string extension)
