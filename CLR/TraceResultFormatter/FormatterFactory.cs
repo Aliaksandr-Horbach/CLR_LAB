@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 
@@ -17,7 +15,7 @@ namespace TraceResultFormatter
             StringBuilder result= new StringBuilder();
             foreach (var type in types)
             {
-                if (type.ToString().ToUpper().Contains(extenson.ToUpper()))
+                if (type.Name.ToUpper().Equals(extenson.ToUpper()))
                 {
                      result.Append(type.SerializeInformation(obj));
                 }
@@ -34,7 +32,6 @@ namespace TraceResultFormatter
             var nameList=new List<string>();
             foreach (var name in names)
             {
-                
                 nameList.Add(name.Name);
             }
             return nameList;

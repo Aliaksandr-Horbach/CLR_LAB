@@ -16,22 +16,19 @@ namespace CLR.Commands
 
             var extansion = "";
             var path = "";
+            var formattersFactory = new FormatterFactory();
 
             switch (command)
             {
                 case "--f":
                     {
 
-                        Console.WriteLine("Choose format of result: \n" + "Console\nXml");
-                        
-                        var formattersFactory=new FormatterFactory();
+                        Console.WriteLine("Choose format of result: \n-console\n-xml");
                         var names=formattersFactory.GetFormatorsNames();
-
                         foreach (var name in names)
                         {
-                            Console.WriteLine(name);
+                            Console.WriteLine("-"+name);
                         }
-
                         extansion = Console.ReadLine();
 
                         if (extansion != null && extansion.Equals("console"))
@@ -39,10 +36,12 @@ namespace CLR.Commands
                             var d = new XmlSerializer.XmlSerializer();
                             Console.WriteLine(d.SerializeInformation(testResults));
                         }
-                        Console.WriteLine("Choose path to file (including name):");
-                        path = Console.ReadLine();
-                        writeInfo.Write(extansion,testResults,path);
-
+                        else
+                        {
+                            Console.WriteLine("Choose path to file (including name):");
+                            path = Console.ReadLine();
+                            writeInfo.Write(extansion, testResults, path);
+                        }
                         break;
                     }
                 case "--o":
@@ -57,6 +56,12 @@ namespace CLR.Commands
                     }
                 case "--h":
                     {
+                        Console.WriteLine("\nAvailable extensions:\n-console\n-xml");
+                        var names = formattersFactory.GetFormatorsNames();
+                        foreach (var name in names)
+                        {
+                            Console.WriteLine("-"+name);
+                        }
                         var readHelp=new ReadHelp();
                         readHelp.ReadFile();
                         break;

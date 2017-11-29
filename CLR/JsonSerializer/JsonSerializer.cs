@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using AppLicationPlugins;
 
 
@@ -7,11 +6,7 @@ namespace JsonSerializer
 {
     public class JsonSerializer:IFormator
     {
-        public string Name
-        {
-            get { return "json"; }
-           
-        }
+        public string Name => "json";
 
 
         public  string SerializeInformation(object obj)

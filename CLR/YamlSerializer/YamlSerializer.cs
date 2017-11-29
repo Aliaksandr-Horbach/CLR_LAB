@@ -8,11 +8,8 @@ namespace YamlSerializer
     public class YamlSerializer:IFormator
     {
 
-        public string Name
-        {
-            get { return "yaml"; }
+        public string Name => "yaml";
 
-        }
         public  string SerializeInformation(object obj)
         {
 
