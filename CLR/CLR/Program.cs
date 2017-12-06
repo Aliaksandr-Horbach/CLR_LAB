@@ -14,6 +14,7 @@ namespace CLR
             while (true)
             {
                 Console.WriteLine("Input command:");
+                Console.WriteLine();
                 var command = Console.ReadLine();
                 usersCommands.RunCommand(command);
 

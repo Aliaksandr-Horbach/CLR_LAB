@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using AppLicationPlugins;
-using TraceResultFormatter.Interfaces;
+using TracerResultGetter.Interfaces;
 
-namespace TraceResultFormatter
+namespace TracerResultGetter
 {
-    public class TraceResultFormatter:ITraceResultFormatter
+    public class TraceResultGetter:ITraceResultGetter
     {
 
         public List<IFormator> GetFormatorsTypes()

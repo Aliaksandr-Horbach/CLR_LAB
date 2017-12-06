@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerializer", "JsonSeria
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializer", "XmlSerializer\XmlSerializer.csproj", "{C508D838-70B2-4E08-8A18-744DF4391917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceResultFormatter", "TraceResultFormatter\TraceResultFormatter.csproj", "{9AAE88BD-1FB4-44AE-A984-F70EA3EEA912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceResultGetter", "TraceResultGetter\TraceResultGetter.csproj", "{9AAE88BD-1FB4-44AE-A984-F70EA3EEA912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

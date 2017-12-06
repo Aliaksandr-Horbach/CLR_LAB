@@ -2,7 +2,8 @@
 using System.Text;
 
 
-namespace TraceResultFormatter
+// ReSharper disable once CheckNamespace
+namespace TracerResultGetter
 {
     public class FormatterFactory
     {
@@ -10,7 +11,7 @@ namespace TraceResultFormatter
 
         public StringBuilder GetFormaterInstance(object obj, string extenson)
         {
-            var traceResult = new TraceResultFormatter();
+            var traceResult = new TraceResultGetter();
             var types= traceResult.GetFormatorsTypes();
             StringBuilder result= new StringBuilder();
             foreach (var type in types)
@@ -27,7 +28,7 @@ namespace TraceResultFormatter
 
         public List<string> GetFormatorsNames()
         {
-            var traceResult =new TraceResultFormatter();
+            var traceResult =new TraceResultGetter();
             var names = traceResult.GetFormatorsTypes();
             var nameList=new List<string>();
             foreach (var name in names)

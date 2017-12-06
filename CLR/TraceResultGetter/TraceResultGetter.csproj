@@ -7,8 +7,8 @@
     <ProjectGuid>{9AAE88BD-1FB4-44AE-A984-F70EA3EEA912}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TraceResultFormatter</RootNamespace>
-    <AssemblyName>TraceResultFormatter</AssemblyName>
+    <RootNamespace>TraceResultGetter</RootNamespace>
+    <AssemblyName>TraceResultGetter</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormatterFactory.cs" />
-    <Compile Include="Interfaces\ITraceResultFormatter.cs" />
-    <Compile Include="TraceResultFormatter.cs" />
+    <Compile Include="Interfaces\ITraceResultGetter.cs" />
+    <Compile Include="TraceResultGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

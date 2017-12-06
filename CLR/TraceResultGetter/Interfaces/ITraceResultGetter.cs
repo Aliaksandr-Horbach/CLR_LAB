@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using AppLicationPlugins;
 
-namespace TraceResultFormatter.Interfaces
+namespace TracerResultGetter.Interfaces
 {
-    internal interface ITraceResultFormatter
+    internal interface ITraceResultGetter
     {
         List<IFormator> GetFormatorsTypes();
     }

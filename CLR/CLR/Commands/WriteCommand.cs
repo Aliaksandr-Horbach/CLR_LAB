@@ -1,5 +1,5 @@
 ﻿using System;
-using TraceResultFormatter;
+using TracerResultGetter;
 
 namespace CLR.Commands
 {

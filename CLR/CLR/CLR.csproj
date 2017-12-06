@@ -59,9 +59,9 @@
       <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
       <Name>ApplicationPlugins</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TraceResultFormatter\TraceResultFormatter.csproj">
+    <ProjectReference Include="..\TraceResultGetter\TraceResultGetter.csproj">
       <Project>{9aae88bd-1fb4-44ae-a984-f70ea3eea912}</Project>
-      <Name>TraceResultFormatter</Name>
+      <Name>TraceResultGetter</Name>
     </ProjectReference>
     <ProjectReference Include="..\TracerImplementation\TracerImplementation.csproj">
       <Project>{e9c5aaea-3474-41dc-981d-3af160f160d2}</Project>
