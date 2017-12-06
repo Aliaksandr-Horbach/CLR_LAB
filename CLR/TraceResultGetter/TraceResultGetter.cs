@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Xml.Serialization;
 using AppLicationPlugins;
 using TraceResultGetter.Interfaces;
 
@@ -13,7 +14,8 @@ namespace TraceResultGetter
 
         public Dictionary<string,IPlugin> GetFormatorsTypes()
         {
-            var formatorsTypes = new Dictionary<string, IPlugin>();
+            var xml = new XmlSerializer.XmlSerializer();
+            var formatorsTypes = new Dictionary<string, IPlugin> {{"console", xml}, {"xml", xml}};
             var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
             foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.TopDirectoryOnly))
             {

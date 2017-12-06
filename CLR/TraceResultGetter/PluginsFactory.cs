@@ -27,7 +27,7 @@ namespace TraceResultGetter
 
         public List<string> GetPluginssNames()
         {
-            var nameList = new List<string> {"console", "xml"};
+            var nameList = new List<string>();
             foreach (var name in _types)
             {
                 nameList.Add(name.Key);

@@ -34,17 +34,11 @@ namespace CLR.Commands
                         {
                             
                        
-                        if (extansion != null && extansion.Equals("console"))
-                        {
-                            var d = new XmlSerializer.XmlSerializer();
-                            Console.WriteLine(d.SerializeInformation(testResults));
-                        }
-                        else
-                        {
+                        
                             Console.WriteLine("Choose path to file (including name):");
                             path = Console.ReadLine();
                             writeInfo.Write(extansion, testResults, path);
-                        }
+                        
                         }
                         else
                         {

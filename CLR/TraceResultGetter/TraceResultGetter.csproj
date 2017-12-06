@@ -50,6 +50,10 @@
       <Project>{b2151acf-7aaf-4e3f-91fc-91a674beae28}</Project>
       <Name>ApplicationPlugins</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XmlSerializer\XmlSerializer.csproj">
+      <Project>{c508d838-70b2-4e08-8a18-744df4391917}</Project>
+      <Name>XmlSerializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,13 +11,28 @@ namespace CLR.Commands
             var writer=new WriteMethods.WriteToFile();
             switch (extansion)
             {
-
+                case "console":
+                {
+                    var formaterFactory = new PluginsFactory();
+                    Console.WriteLine(formaterFactory.GetPluginResult(testResults, extansion));
+                        break;
+                }
+                    
                 case "xml":
                 {
-                    var d = new XmlSerializer.XmlSerializer();
-                    writer.WriteTests(extansion, d.SerializeInformation(testResults), path);
+                    try
+                    {
+                        var formaterFactory = new PluginsFactory();
+                        writer.WriteTests(extansion, formaterFactory.GetPluginResult(testResults, extansion).ToString(), path);
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                     break;
-                }
+                    }
 
                 case "json":
                 {
