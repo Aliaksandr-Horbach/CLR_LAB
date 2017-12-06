@@ -1,5 +1,5 @@
 ﻿using System;
-using TracerResultGetter;
+using TraceResultGetter;
 
 namespace CLR.Commands
 {
@@ -23,8 +23,8 @@ namespace CLR.Commands
                 {
                     try
                     {
-                        var formaterFactory = new FormatterFactory();
-                        writer.WriteTests(extansion,formaterFactory.GetFormaterInstance(testResults,extansion).ToString(),path);
+                        var formaterFactory = new PluginsFactory();
+                        writer.WriteTests(extansion,formaterFactory.GetPluginResult(testResults,extansion).ToString(),path);
 
                     }
                     catch (Exception e)
@@ -38,8 +38,8 @@ namespace CLR.Commands
                 {
                     try
                     {
-                        var formaterFactory = new FormatterFactory();
-                        writer.WriteTests(extansion, formaterFactory.GetFormaterInstance(testResults, extansion).ToString(), path);
+                        var formaterFactory = new PluginsFactory();
+                        writer.WriteTests(extansion, formaterFactory.GetPluginResult(testResults, extansion).ToString(), path);
                     }
                     catch (Exception e)
                     {

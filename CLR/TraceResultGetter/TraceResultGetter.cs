@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using AppLicationPlugins;
-using TracerResultGetter.Interfaces;
+using TraceResultGetter.Interfaces;
 
-namespace TracerResultGetter
+
+namespace TraceResultGetter
 {
     public class TraceResultGetter:ITraceResultGetter
     {
 
-        public List<IFormator> GetFormatorsTypes()
+        public Dictionary<string,IPlugin> GetFormatorsTypes()
         {
-            var formatorsTypes=new List<IFormator>();
+            var formatorsTypes = new Dictionary<string, IPlugin>();
             var pluginsFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(), "Plugins");
             foreach (var pluginPath in Directory.GetFiles(pluginsFolder, "*.dll", SearchOption.TopDirectoryOnly))
             {
                 var newAssembly = Assembly.LoadFrom(pluginPath);
                 foreach (var type in newAssembly.GetExportedTypes())
                 {
-                    if (type.IsClass && type.GetInterface(typeof(IFormator).FullName) != null)
+                    if (type.IsClass && type.GetInterface(typeof(IPlugin).FullName) != null)
                     {
                         var ctor = type.GetConstructor(new Type[] { });
                         if (ctor != null)
                         {
-                            var plugin = ctor.Invoke(new object[] { }) as IFormator;
-                            formatorsTypes.Add(plugin);
+                            if (ctor.Invoke(new object[] { }) is IPlugin plugin) formatorsTypes.Add(plugin.Name, plugin);
                         }
                     }
                 }

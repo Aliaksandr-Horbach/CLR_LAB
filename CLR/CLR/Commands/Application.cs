@@ -1,12 +1,12 @@
 ﻿using System;
-using TracerResultGetter;
+using TraceResultGetter;
 
 namespace CLR.Commands
 {
     public class Application
     {
        
-        public void RunCommand(string command)
+        public void RunCommand(string command, PluginsFactory pluginsesFactory)
         {
 
             var runTests=new RunTests();
@@ -16,21 +16,24 @@ namespace CLR.Commands
 
             var extansion = "";
             var path = "";
-            var formattersFactory = new FormatterFactory();
+            
 
             switch (command)
             {
                 case "--f":
                     {
 
-                        Console.WriteLine("Choose format of result: \n-console\n-xml");
-                        var names=formattersFactory.GetFormatorsNames();
+                        Console.WriteLine("Choose format of result:");
+                        var names=pluginsesFactory.GetPluginssNames();
                         foreach (var name in names)
                         {
                             Console.WriteLine("-"+name);
                         }
                         extansion = Console.ReadLine();
-
+                        if (names.Contains(extansion))
+                        {
+                            
+                       
                         if (extansion != null && extansion.Equals("console"))
                         {
                             var d = new XmlSerializer.XmlSerializer();
@@ -41,6 +44,11 @@ namespace CLR.Commands
                             Console.WriteLine("Choose path to file (including name):");
                             path = Console.ReadLine();
                             writeInfo.Write(extansion, testResults, path);
+                        }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong extansion. Type --h to get help.");
                         }
                         break;
                     }
@@ -56,8 +64,8 @@ namespace CLR.Commands
                     }
                 case "--h":
                     {
-                        Console.WriteLine("\nAvailable extensions:\n-console\n-xml");
-                        var names = formattersFactory.GetFormatorsNames();
+                        Console.WriteLine("\nAvailable extensions:");
+                        var names = pluginsesFactory.GetPluginssNames();
                         foreach (var name in names)
                         {
                             Console.WriteLine("-"+name);

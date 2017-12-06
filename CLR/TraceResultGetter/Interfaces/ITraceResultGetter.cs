@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using AppLicationPlugins;
 
-namespace TracerResultGetter.Interfaces
+namespace TraceResultGetter.Interfaces
 {
     internal interface ITraceResultGetter
     {
-        List<IFormator> GetFormatorsTypes();
+        Dictionary<string, IPlugin> GetFormatorsTypes();
     }
 }

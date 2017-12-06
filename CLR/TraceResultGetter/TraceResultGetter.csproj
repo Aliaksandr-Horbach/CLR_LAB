@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormatterFactory.cs" />
+    <Compile Include="PluginsFactory.cs" />
     <Compile Include="Interfaces\ITraceResultGetter.cs" />
     <Compile Include="TraceResultGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

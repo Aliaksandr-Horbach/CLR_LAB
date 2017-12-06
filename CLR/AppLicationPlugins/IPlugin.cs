@@ -1,7 +1,7 @@
 ﻿
 namespace AppLicationPlugins
 {
-    public interface IFormator
+    public interface IPlugin
     {
         string Name { get; }
         string SerializeInformation(object obj);

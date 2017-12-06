@@ -4,7 +4,7 @@ using AppLicationPlugins;
 
 namespace JsonSerializer
 {
-    public class JsonSerializer:IFormator
+    public class JsonSerializer:IPlugin
     {
         public string Name => "json";
 

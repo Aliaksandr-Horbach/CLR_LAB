@@ -6,7 +6,7 @@ using TracerImplementation;
 
 namespace XmlSerializer
 {
-    public class XmlSerializer:IFormator
+    public class XmlSerializer:IPlugin
     {
         public string Name => "xml";
 
